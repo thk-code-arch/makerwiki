@@ -1,22 +1,14 @@
 <template>
-  <main
-    v-if="projectPosts"
-    class="main"
-  >
-    <h1 class="title text-left">Projects</h1>
-    <ul
-      v-for="(projectPost, index) in projectPosts"
-      :key="index"
-      class="articles"
-    >
-      <nuxt-link
-        class="article article--clickable"
-        :to="`projects/${projectPost.slug}`"
-      >
-        <h3 class="article-title">{{ projectPost.title }}</h3>
+  <main v-if="processPosts" class="main">
+    <h1 class="title text-left">process</h1>
+    <ul v-for="(processPost, index) in processPosts" :key="index" class="articles">
+      <nuxt-link class="article article--clickable" :to="`process/${processPost.slug}`">
+        <h3 class="article-title">{{ processPost.title }}</h3>
         <div class="mt-4 mb-2">
-          <h2 class="inline py-1 px-2 mr-1 bg-accent text-white font-medium rounded-sm dark:bg-accent">{{ projectPost.project_type }}</h2>
-          <p class="inline">{{ projectPost.description }}</p>
+          <h2 class="inline py-1 px-2 mr-1 bg-accent text-white font-medium rounded-sm dark:bg-accent">
+            {{ processPost.process_type }}
+          </h2>
+          <p class="inline">{{ processPost.description }}</p>
         </div>
       </nuxt-link>
     </ul>
@@ -25,9 +17,9 @@
 <script>
 export default {
   computed: {
-    projectPosts() {
-      return this.$store.state.projectPosts
-    }
-  }
+    processPosts() {
+      return this.$store.state.processPosts
+    },
+  },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="main text-center flex flex-col items-center justify-center">
-    <h1 class="title">Nuxt — Tailwind — Netlify CMS</h1>
-    <h2 class="subtitle">Boilerplate</h2>
+    <h1 class="title">MakerWiki</h1>
+    <h2 class="subtitle">Prototype</h2>
   </div>
 </template>
 

@@ -1,27 +1,14 @@
 <template>
-  <main
-    v-if="blogPosts"
-    class="main"
-  >
-    <h1 class="title text-left">Blog</h1>
-    <ul
-      v-for="(blogPost, index) in blogPosts"
-      :key="index"
-      class="articles"
-    >
-      <nuxt-link
-        :to="`blog/${blogPost.slug}`"
-        class="article article--clickable"
-      >
-        <div class="flex justify-between align-baseline">
-          <h3 class="article-title">{{ blogPost.title }}</h3>
-          <h6
-            v-if="blogPost.date"
-            class="inline-block py-1 px-2 bg-accent text-white font-medium rounded-sm dark:bg-accent whitespace-no-wrap"
-          >{{ formatDate(blogPost.date) }}</h6>
-        </div>
+  <main v-if="materialPosts" class="main">
+    <h1 class="title text-left">materials</h1>
+    <ul v-for="(materialPost, index) in materialPosts" :key="index" class="articles">
+      <nuxt-link class="article article--clickable" :to="`materials/${materialPost.slug}`">
+        <h3 class="article-title">{{ materialPost.title }}</h3>
         <div class="mt-4 mb-2">
-          <p class="inline">{{ blogPost.description }}</p>
+          <h2 class="inline py-1 px-2 mr-1 bg-accent text-white font-medium rounded-sm dark:bg-accent">
+            {{ materialPost.material_type }}
+          </h2>
+          <p class="inline">{{ materialPost.description }}</p>
         </div>
       </nuxt-link>
     </ul>
@@ -30,15 +17,9 @@
 <script>
 export default {
   computed: {
-    blogPosts() {
-      return this.$store.state.blogPosts
-    }
+    materialPosts() {
+      return this.$store.state.materialPosts
+    },
   },
-  methods: {
-    formatDate(dateString) {
-      const date = new Date(dateString)
-      return date.toLocaleDateString(process.env.lang) || ''
-    }
-  }
 }
 </script>
