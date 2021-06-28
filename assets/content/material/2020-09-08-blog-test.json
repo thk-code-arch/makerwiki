@@ -1,6 +1,8 @@
 {
-  "title": "Blog test",
-  "date": "2020-09-08T06:00:00.000Z",
-  "description": "Ipsa natus aliquid ",
-  "body": "## some Post\n\n### Some subheader\n\nLorem ipsum dolor websites amet.\n\n> A blockquote from a wise person."
+  "name": "Bambusplatten",
+  "enName": "laminated bamboo lumber (LBL)",
+  "frName": "bois de bambou laminé",
+  "shortDescription": "Bambusplatten sind ein Werkstoff aus miteinander verleimten Bambuslamellen.",
+  "mdDescription": "## some Post\n\n### Some subheader\n\nLorem ipsum dolor websites amet.\n\n> A blockquote from a wise person.",
+  "date": "2020-09-08T20:35:29.027Z"
 }
