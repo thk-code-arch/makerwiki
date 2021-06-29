@@ -5,6 +5,7 @@ publish_mode: editorial_workflow
 backend:
   name: git-gateway
   branch: main
+  repo: thk-code-arch/makerwiki
 
 media_folder: static/img
 public_folder: /img
