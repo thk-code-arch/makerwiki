@@ -1,12 +1,9 @@
 <template>
   <article v-if="materialPost" class="main article">
-    <h1 class="article-title">{{ materialPost.title }}</h1>
-    <p class="mt-4">{{ materialPost.description }}</p>
-    <img class="cover-image" :src="materialPost.cover" />
-    <div class="block mt-8 mb-4" v-html="$md.render(materialPost.body)" />
-    <div v-if="materialPost.gallery">
-      <img v-for="image in materialPost.gallery" class="image" :key="image.id" :src="image" />
-    </div>
+    <h1 class="article-title">{{ materialPost.name }}</h1>
+    <p class="mt-4">{{ materialPost.shortDescription }}</p>
+    <img class="cover-image" :src="materialPost.image" />
+    <div class="block mt-8 mb-4" v-html="$md.render(materialPost.mdDescription)" />
   </article>
 </template>
 <script>
