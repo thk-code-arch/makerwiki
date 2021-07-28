@@ -1,0 +1,17 @@
+{
+  "kategorisierung": {
+    "gruppe": "Holz",
+    "untergruppe": "Laubholz",
+    "art": "Eiche"
+  },
+  "image": "/img/sperholzplatten.png",
+  "mechanische eigenschaften": {
+    "dichte": {
+      "dichte": {
+        "min": 20,
+        "max": 20
+      },
+      "einheit": "kgm3"
+    }
+  }
+}
