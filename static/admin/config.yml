@@ -18,23 +18,60 @@ collections:
     folder: 'assets/content/material'
     create: true
     format: 'json'
-    slug: '{{slug}}'
+    slug: "{{year}}-{{month}}-{{day}}_{{fields.kategorisierung}}-{{title}}"
     # editor:
     #   preview: true
+
     fields:
-      - { label: 'Material name', name: 'name', widget: 'string' }
-      - { label: 'EN Material name', name: 'enName', widget: 'string' }
-      - { label: 'FR Material name', name: 'frName', widget: 'string' }
-      - { label: 'Short Description', name: 'shortDescription', widget: 'string' }
-      - { label: 'MD Description', name: 'mdDescription', widget: 'markdown' }
-      - {
-          label: 'Material Image',
-          name: 'image',
-          widget: 'string',
-          required: false
-        }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - {label: "Draft", name: "draft", widget: "boolean", default: true}
+      - label: 'Title'
+        name: 'title'
+        title: ''
+      - label: 'Material Image'
+        name: 'image'
+        widget: 'image'
+      - label: "Kategorisierung"
+        name: "kategorisierung"
+        widget: "object"
+        summary: '{{fields.name}}: {{fields.kategorisierung}}'
+        fields:
+          - label: "Gruppe"
+            name: "gruppe"
+            widget: "select"
+            options:
+            - { label: "Holz", value: "Holz" }
+          - label: "Untergruppe"
+            name: "untergruppe"
+            widget: "select"
+            options:
+            - { label: "Laubholz", value: "Laubholz" }
+          - label: "Art"
+            name: "art"
+            widget: "select"
+            options:
+            - { label: "Eiche", value: "Eiche" }
+      - label: "Mechanische Eigenschaften"
+        name: "mechanische eigenschaften"
+        widget: "object"
+        summary: '{{fields.name}}: {{fields.mechanische}}'
+        fields:
+        - label: 'Dichte'
+          name: 'dichte'
+          widget: 'object'
+          fields:
+            - label: 'Dichte'
+              name: 'dichte'
+              widget: 'object'
+              fields:
+              - { widget: "number", label: 'min', name: 'min', value_type: 'int'}
+              - { widget: "number", label: 'max', name: 'max', value_type: 'int'}
+
+            - label: "Einheit"
+              name: "einheit"
+              widget: "select"
+              options:
+              - { label: "Kilogramm per m2", value: "kgm3" }
+          
+            
     # Process
   - name: 'process'
     label: 'Process'
