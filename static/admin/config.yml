@@ -22,12 +22,32 @@ collections:
     # editor:
     #   preview: true
     fields:
+      - label: "Kategorisierung"
+        name: "kategorisierung"
+        widget: "object"
+        summary: '{{fields.name}}: {{fields.Gruppe}}'
+        fields:
+          - label: "Gruppe"
+            name: "gruppe"
+            widget: "select"
+            options:
+            - { label: "Holz", value: "Holz" }
+          - label: "Untergruppe"
+            name: "untergruppe"
+            widget: "select"
+            options:
+            - { label: "Laubholz", value: "Laubholz" }
+          - label: "Art"
+            name: "art"
+            widget: "select"
+            options:
+            - { label: "Eiche", value: "Eiche" }
       - { label: 'Material name', name: 'name', widget: 'string' }
       - { label: 'EN Material name', name: 'enName', widget: 'string' }
       - { label: 'FR Material name', name: 'frName', widget: 'string' }
       - { label: 'Short Description', name: 'shortDescription', widget: 'string' }
       - { label: 'MD Description', name: 'mdDescription', widget: 'markdown' }
-      - {
+      - {           
           label: 'Material Image',
           name: 'image',
           widget: 'string',
