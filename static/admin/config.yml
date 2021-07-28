@@ -6,7 +6,7 @@ backend:
   name: git-gateway
   branch: main
   repo: thk-code-arch/makerwiki
-
+local_backend: true
 media_folder: static/img
 public_folder: /img
 
@@ -34,6 +34,7 @@ collections:
           required: false
         }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - {label: "Draft", name: "draft", widget: "boolean", default: true}
     # Process
   - name: 'process'
     label: 'Process'
@@ -55,3 +56,20 @@ collections:
           required: false
         }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - label: "Maße"
+        name: "maße"
+        widget: "object"
+        summary: '{{fields.name}}: {{fields.schnitt}}'
+        fields:
+          - label: "Schnitt"
+            name: "schnitt"
+            widget: "number"
+            value_type: "int"
+            default: ""
+          - label: "Maßeinheit"
+            name: "maßeinheit"
+            widget: "select"
+            options:
+            - { label: "Zentimeter", value: "cm" }
+            - { label: "Millimeter", value: "mm" }
+          
