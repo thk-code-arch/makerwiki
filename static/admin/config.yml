@@ -58,8 +58,8 @@ collections:
           name: 'dichte'
           widget: 'object'
           fields:
-            - label: 'Dichte'
-              name: 'dichte'
+            - label: 'Werte'
+              name: 'werte'
               widget: 'object'
               fields:
               - { widget: "number", label: 'min', name: 'min', value_type: 'int'}
@@ -69,9 +69,126 @@ collections:
               name: "einheit"
               widget: "select"
               options:
-              - { label: "Kilogramm per m2", value: "kgm3" }
-          
+              - { label: "Kilogramm per m2", value: "kgm³" }
+        - label: 'Elastizität'
+          name: 'elastizität'
+          widget: 'object'
+          fields:
+            - label: 'Werte'
+              name: 'werte'
+              widget: 'object'
+              fields:
+              - { widget: "number", label: 'min', name: 'min', value_type: 'int'}
+              - { widget: "number", label: 'max', name: 'max', value_type: 'int'}
+
+            - label: "Einheit"
+              name: "einheit"
+              widget: "select"
+              options:
+              - { label: "Nano per mm²", value: "N/mm²" }
+
+      - label: "Festigkeit"
+        name: "festigkeit"
+        widget: "object"
+        summary: '{{fields.name}}: {{fields.festigkeit}}'
+        fields:
+              - label: 'Druck'
+                name: 'druck'
+                widget: 'object'
+                fields:
+                - { widget: "number", label: 'min', name: 'min', value_type: 'int'}
+                - { widget: "number", label: 'max', name: 'max', value_type: 'int'}
+              
+              - label: "Einheit"
+                name: "einheit"
+                widget: "select"
+                options:
+                - { label: "Nano per mm²", value: "N/mm²" }
+
+              - label: 'Zug'
+                name: 'zug'
+                widget: 'object'
+                fields:
+                - { widget: "number", label: 'min', name: 'min', value_type: 'int'}
+                - { widget: "number", label: 'max', name: 'max', value_type: 'int'}
+              
+              - label: "Maßeinheit"
+                name: "maßeinheit"
+                widget: "select"
+                options:
+                - { label: "Nano per mm²", value: "N/mm²" }
+              
+              - label: 'Biege'
+                name: 'biege'
+                widget: 'object'
+                fields:
+                - { widget: "number", label: 'min', name: 'min', value_type: 'int'}
+                - { widget: "number", label: 'max', name: 'max', value_type: 'int'}
+              
+              - label: "Maßeinheitz"
+                name: "maßeinheitz"
+                widget: "select"
+                options:
+                - { label: "Nano per mm²", value: "N/mm²" }
+
+              - label: 'Brinellhärte'
+                name: 'brinellhärte'
+                widget: 'object'
+                fields:
+                - { widget: "number", label: 'min', name: 'min', value_type: 'int'}
+                - { widget: "number", label: 'max', name: 'max', value_type: 'int'}
+              
+              - label: "Maßeinheits"
+                name: "maßeinheits"
+                widget: "select"
+                options:
+                - { label: "Nano per mm²", value: "N/mm²" }
+
+              - label: 'Nachgiebigkeit Duktilität'
+                name: 'nachgiebigkeit duktilität'
+                widget: 'string'
+
+              - label: 'Sprödigkeit'
+                name: 'sprödigkeit'
+                widget: 'string'
+
+      - label: "Differentielles Schwindmaß"
+        name: "differentielles schwindmaß "
+        widget: "object"
+        summary: '{{fields.name}}: {{fields.schwindmaß}}'
+        fields:
+        - label: 'Tangential'
+          name: 'tangential'
+          widget: 'object'
+          fields:
+           - { widget: "number", label: 'min', name: 'min', value_type: 'int'}
+           - { widget: "number", label: 'max', name: 'max', value_type: 'int'}
+              
+        - label: "Prozent"
+          name: "prozent"
+          widget: "select"
+          options:
+          - { label: "Prozent", value: "%" }
+
+        - label: 'Radial'
+          name: 'radial'
+          widget: 'object'
+          fields:
+           - { widget: "number", label: 'min', name: 'min', value_type: 'int'}
+           - { widget: "number", label: 'max', name: 'max', value_type: 'int'}
+              
+        - label: "Prozente"
+          name: "prozente"
+          widget: "select"
+          options:
+          - { label: "Prozente", value: "%%" }
+
+      - label: "Physikalische Eigentschaften"
+        name: "physikalische eigentschaften"
+        widget: "object"
+        summary: '{{fields.name}}: {{fields.schwindmaß}}'
             
+
     # Process
   - name: 'process'
     label: 'Process'
