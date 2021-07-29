@@ -1,11 +1,8 @@
 <template>
   <article v-if="materialPost" class="main article">
     <h1 class="article-title">{{ materialPost.kategorisierung }}</h1>
-<<<<<<< HEAD
-
-=======
     <p class="mt-4">{{ materialPost.shortDescription }}</p>
->>>>>>> ccb31b0286d69c5c8317e8f889a6e0da7a6c083c
+    <h1 class="description">{{ materialPost.schwindmaß }}</h1>
     <img class="cover-image" :src="materialPost.image" />
 
   </article>

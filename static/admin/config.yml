@@ -18,14 +18,14 @@ collections:
     folder: 'assets/content/material'
     create: true
     format: 'json'
-    slug: "{{year}}-{{month}}-{{day}}_{{fields.kategorisierung}}-{{title}}"
+    slug: "{{fields.kategorisierung}}-{{title}}"
     # editor:
     #   preview: true
 
     fields:
       - label: 'Title'
         name: 'title'
-        title: ''
+        title: '{{fields.kategorisierung}}'
       - label: 'Material Image'
         name: 'image'
         widget: 'image'
