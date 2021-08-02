@@ -2,111 +2,40 @@
   <div class="main text-center flex flex-col items-center justify-center">
     <h1 class="title">Formular</h1>
     <h2 class="subtitle">Material Formular</h2>
+    <FormulateForm v-model="fields">
 
-      <FormulateInput
-      type="image"
-      name="headshot"
-      label="Wählen Sie ein Bild zum Hochladen aus"
-      help="Wählen Sie ein PNG, JPG oder GIF zum Hochladen aus."
-      validation="mime:image/jpeg,image/png,image/gif"
-    />
-      />
-      <FormulateInput
-       type="group"
-       :repeatable="false"
-       name="Mechanische Eigenschaften"
->
-  <FormulateInput
-    name="dichte"
-    label="Dichte"
-  />
-  <FormulateInput
-    name="elastizität"
-    label="Elastizität"
-  />
-</FormulateInput>
+      <FormulateInput type="group" name="kategorie" :repeatable="false">
+           <FormulateInput type="select" name="gruppe" label="Gruppe" :options="kategorie.gruppe" />
+          <FormulateInput type="select" name="unterGruppe" label="Untergruppe" :options="kategorie.unterGruppe" />
+          <FormulateInput type="select" name="art" label="Art" :options="kategorie.art" />
+
+
+      </FormulateInput>
+      <FormulateInput type="group" name="mechanischeEigenschaften" :repeatable="false">
+        <FormulateInput type="group" name="dichte" :repeatable="false">
+          <FormulateInput type="number" name="min" label="min Dichte" />
+          <FormulateInput type="number" name="max" label="max Dichte" />
+          <FormulateInput type="select" name="dichteEinheit" label="Einheit" :options="einheiten" />
+
+        </FormulateInput>
+      </FormulateInput>
+    </FormulateForm>
     <div>
-{{formValues}}
-
+      {{ fields }}
     </div>
   </div>
 </template>
 
-<
-<template>
-  <FormulateForm
-    :values="formValues"
-  >
-    <FormulateInput
-      type="text"
-      name="Dichte"
-      label="Dichte"
-    />
-    <FormulateInput
-      type="select"
-      :options="['Kg/m3', 'N/mm2']"
-    />
-    <FormulateInput
-      type="text"
-      name="Elastizität"
-      label="Elastizität"
-    />
-
-    <FormulateInput
-      type="select"
-      :options="['Kg/m3', 'N/mm2']"
-    />
-
-    
-    <FormulateInput
-      type=""
-      name="festigkeit"
-      label="Festigkeit"
-    />
-      <FormulateInput
-      type="text"
-      name="druck"
-      label="Druck"
-    />
-      <FormulateInput
-      type="text"
-      name="zug"
-      label="Zug"
-    />
-      <FormulateInput
-      type="text"
-      name="biege"
-      label="Biege"
-    />
-      <FormulateInput
-      type="text"
-      name="brinellehärte"
-      label="Brinellehärte"
-    />
-      <FormulateInput
-      type="text"
-      name="nachgiebigkeit-duktillität"
-      label="Nachgiebigkeit-Duktillität"
-    />
-        <FormulateInput
-      type="text"
-      name="sprödigkeit"
-      label="Sprödigkeit"
-    />
-
-
-  </FormulateForm>
-  
-</template>
-
 <script>
 export default {
-  data () {
+  data() {
     return {
-      formValues: {
-        Dichte: 'k/mg³',
-        Elastizität: 'N/mm2'
-      }
+      fields: {},
+      einheiten: {
+        kgm3: 'k/mg³',
+        nmm2: 'N/mm2'
+      },
+      kategorie:{gruppe: ["Holz", "Stahl"], unterGruppe: ["Laubholz", "Eisen"], art:["Eiche","Aluminium"]}
     }
   }
 }
