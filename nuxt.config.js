@@ -66,10 +66,15 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/color-mode', '@nuxtjs/tailwindcss', '@nuxtjs/svg', '@nuxtjs/pwa'],
+  buildModules: ['@nuxtjs/color-mode', '@nuxtjs/tailwindcss', '@nuxtjs/svg', '@nuxtjs/pwa',
+  '@braid/vue-formulate/nuxt'
+],
   /*
    ** Nuxt.js modules
    */
+   formulate: {
+    configPath: '~/formulate.config.js'
+  },
   modules: ['@nuxtjs/markdownit', 'nuxt-purgecss'],
   markdownit: {
     injected: true
