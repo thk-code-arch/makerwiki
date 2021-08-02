@@ -3,22 +3,79 @@
     <h1 class="title">Formular</h1>
     <h2 class="subtitle">Material Formular</h2>
     <FormulateForm v-model="fields">
-
+      <FormulateInput type="image" name="pic" label="Bild Auswählen" help="Nimm png, jpg or gif fürs upload." validation="mime:image/jpeg,image/png,image/gif"/>
       <FormulateInput type="group" name="kategorie" :repeatable="false">
-           <FormulateInput type="select" name="gruppe" label="Gruppe" :options="kategorie.gruppe" />
-          <FormulateInput type="select" name="unterGruppe" label="Untergruppe" :options="kategorie.unterGruppe" />
-          <FormulateInput type="select" name="art" label="Art" :options="kategorie.art" />
-
-
+        <FormulateInput type="select" name="gruppe" label="Gruppe" :options="kategorie.gruppe" />
+        <FormulateInput type="select" name="unterGruppe" label="Untergruppe" :options="kategorie.unterGruppe" />
+        <FormulateInput type="select" name="art" label="Art" :options="kategorie.art" />
       </FormulateInput>
       <FormulateInput type="group" name="mechanischeEigenschaften" :repeatable="false">
         <FormulateInput type="group" name="dichte" :repeatable="false">
           <FormulateInput type="number" name="min" label="min Dichte" />
           <FormulateInput type="number" name="max" label="max Dichte" />
           <FormulateInput type="select" name="dichteEinheit" label="Einheit" :options="einheiten" />
-
+        </FormulateInput>
+        <FormulateInput type="group" name="elastizität" :repeatable="false">
+          <FormulateInput type="number" name="min" label="min Elastizität" />
+          <FormulateInput type="number" name="max" label="max Elastizität" />
+          <FormulateInput type="select" name="elastizitätEinheit" label="Einheit" :options="einheiten" />
         </FormulateInput>
       </FormulateInput>
+      <FormulateInput type="group" name="festigkeit" :repeatable="false">
+        <FormulateInput type="group" name="druck" :repeatable="false">
+          <FormulateInput type="number" name="min" label="min Druck" />
+          <FormulateInput type="number" name="max" label="max Druck" />
+          <FormulateInput type="select" name="druckEinheit" label="Einheit" :options="einheiten" />
+        </FormulateInput>
+        <FormulateInput type="group" name="zug" :repeatable="false">
+          <FormulateInput type="number" name="min" label="min Zug" />
+          <FormulateInput type="number" name="max" label="max Zug" />
+          <FormulateInput type="select" name="zugEinheit" label="Einheit" :options="einheiten" />
+        </FormulateInput>
+        <FormulateInput type="group" name="biege" :repeatable="false">
+          <FormulateInput type="number" name="min" label="min Biege" />
+          <FormulateInput type="number" name="max" label="max Biege" />
+          <FormulateInput type="select" name="biegEinheit" label="Einheit" :options="einheiten" />
+        </FormulateInput>
+        <FormulateInput type="group" name="brienellehärte" :repeatable="false">
+          <FormulateInput type="number" name="min" label="min Brienellehärte" />
+          <FormulateInput type="number" name="max" label="max Brienellehärte" />
+          <FormulateInput type="select" name="brienellehärteEinheit" label="Einheit" :options="einheiten" />
+        </FormulateInput>
+          <FormulateInput type="text" name="nachgiebigkeit" label="Nachgiebigkeit (Duktilität)" />
+          <FormulateInput type="text" name="sprödigkeit" label="Sprödigkeit" />
+        </FormulateInput>
+      <FormulateInput type="group" name="differentiellesSchwindmaß " :repeatable="false">
+        <FormulateInput type="group" name="tangential" :repeatable="false">
+          <FormulateInput type="number" name="min" label="min Tangential" />
+          <FormulateInput type="number" name="max" label="max Tangential" />
+          <FormulateInput type="select" name="tangentialEinheit" label="Einheit" :options="einheiten" />
+        </FormulateInput>
+        <FormulateInput type="group" name="radial" :repeatable="false">
+          <FormulateInput type="number" name="min" label="min Radial" />
+          <FormulateInput type="number" name="max" label="max Radial" />
+          <FormulateInput type="select" name="radialEinheit" label="Einheit" :options="einheiten" />
+        </FormulateInput>
+      <FormulateInput type="group" name="physikalischeEigenschaften " :repeatable="false">
+        <FormulateInput type="group" name="elektrischeLeitfähigkeit" :repeatable="false">
+          <FormulateInput type="checkbox" name="leitfähigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" />
+          <FormulateInput type="checkbox" name="dielektrizitätskonstante" label="leitfähigkeit" help="JA oder Nein?" />
+          <FormulateInput type="checkbox" name="magnetischeBesonderheiten" label="Magnetische Besonderheiten" />
+          <FormulateInput type="checkbox" name="optischeEigenschaften" label="Optische Eigenschaften"/>
+          <FormulateInput type="checkbox" name="thermischesVerhalten" label="Thermisches Verhalten  "/>
+        </FormulateInput>
+
+
+
+
+
+
+
+
+
+
+        </FormulateInput>
+        </FormulateInput>
     </FormulateForm>
     <div>
       {{ fields }}
@@ -33,9 +90,10 @@ export default {
       fields: {},
       einheiten: {
         kgm3: 'k/mg³',
-        nmm2: 'N/mm2'
+        nmm2: 'N/mm²',
+        prozent:"%"
       },
-      kategorie:{gruppe: ["Holz", "Stahl"], unterGruppe: ["Laubholz", "Eisen"], art:["Eiche","Aluminium"]}
+      kategorie: { gruppe: ['Holz', 'Stahl'], unterGruppe: ['Laubholz', 'Eisen'], art: ['Eiche', 'Aluminium'] }
     }
   }
 }
