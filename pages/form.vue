@@ -3,7 +3,13 @@
     <h1 class="title">Formular</h1>
     <h2 class="subtitle">Material Formular</h2>
     <FormulateForm v-model="fields">
-      <FormulateInput type="image" name="pic" label="Bild Auswählen" help="Nimm png, jpg or gif fürs upload." validation="mime:image/jpeg,image/png,image/gif"/>
+      <FormulateInput
+        type="image"
+        name="pic"
+        label="Bild Auswählen"
+        help="Nimm png, jpg or gif fürs upload."
+        validation="mime:image/jpeg,image/png,image/gif"
+      />
       <FormulateInput type="group" name="kategorie" :repeatable="false">
         <FormulateInput type="select" name="gruppe" label="Gruppe" :options="kategorie.gruppe" />
         <FormulateInput type="select" name="unterGruppe" label="Untergruppe" :options="kategorie.unterGruppe" />
@@ -42,9 +48,9 @@
           <FormulateInput type="number" name="max" label="max Brienellehärte" />
           <FormulateInput type="select" name="brienellehärteEinheit" label="Einheit" :options="einheiten" />
         </FormulateInput>
-          <FormulateInput type="text" name="nachgiebigkeit" label="Nachgiebigkeit (Duktilität)" />
-          <FormulateInput type="text" name="sprödigkeit" label="Sprödigkeit" />
-        </FormulateInput>
+        <FormulateInput type="text" name="nachgiebigkeit" label="Nachgiebigkeit (Duktilität)" />
+        <FormulateInput type="text" name="sprödigkeit" label="Sprödigkeit" />
+      </FormulateInput>
       <FormulateInput type="group" name="differentiellesSchwindmaß " :repeatable="false">
         <FormulateInput type="group" name="tangential" :repeatable="false">
           <FormulateInput type="number" name="min" label="min Tangential" />
@@ -56,26 +62,31 @@
           <FormulateInput type="number" name="max" label="max Radial" />
           <FormulateInput type="select" name="radialEinheit" label="Einheit" :options="einheiten" />
         </FormulateInput>
-      <FormulateInput type="group" name="physikalischeEigenschaften " :repeatable="false">
-        <FormulateInput type="group" name="elektrischeLeitfähigkeit" :repeatable="false">
-          <FormulateInput type="checkbox" name="leitfähigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" />
-          <FormulateInput type="checkbox" name="dielektrizitätskonstante" label="leitfähigkeit" help="JA oder Nein?" />
-          <FormulateInput type="checkbox" name="magnetischeBesonderheiten" label="Magnetische Besonderheiten" />
-          <FormulateInput type="checkbox" name="optischeEigenschaften" label="Optische Eigenschaften"/>
-          <FormulateInput type="checkbox" name="thermischesVerhalten" label="Thermisches Verhalten  "/>
+        <FormulateInput type="group" name="physikalischeEigenschaften " :repeatable="false">
+          <FormulateInput type="group" name="elektrischeLeitfähigkeit" :repeatable="false">
+            <FormulateInput type="checkbox" name="leitfähigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" />
+            <FormulateInput
+              type="checkbox"
+              name="dielektrizitätskonstante"
+              label="leitfähigkeit"
+              help="JA oder Nein?"
+            />
+            <FormulateInput type="checkbox" name="magnetischeBesonderheiten" label="Magnetische Besonderheiten" />
+            <FormulateInput type="checkbox" name="optischeEigenschaften" label="Optische Eigenschaften" />
+            <FormulateInput type="checkbox" name="thermischesVerhalten" label="Thermisches Verhalten  " />
+          </FormulateInput>
         </FormulateInput>
-
-
-
-
-
-
-
-
-
-
+        <FormulateInput type="group" name="oberfläche" :repeatable="false">
+          <FormulateInput
+            type="radio"
+            name="korrosionOxidation"
+            label="Korrosion?"
+            :repeatable="false"
+            :options="{ ja: 'Ja', nein: 'Nein', vielleicht: 'Vielleicht' }"
+          >
+          </FormulateInput>
         </FormulateInput>
-        </FormulateInput>
+      </FormulateInput>
     </FormulateForm>
     <div>
       {{ fields }}
@@ -91,7 +102,7 @@ export default {
       einheiten: {
         kgm3: 'k/mg³',
         nmm2: 'N/mm²',
-        prozent:"%"
+        prozent: '%'
       },
       kategorie: { gruppe: ['Holz', 'Stahl'], unterGruppe: ['Laubholz', 'Eisen'], art: ['Eiche', 'Aluminium'] }
     }
