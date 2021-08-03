@@ -66,14 +66,10 @@
           <FormulateInput type="group" name="elektrischeLeitfähigkeit" :repeatable="false">
             <FormulateInput type="checkbox" name="leitfähigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" />
             <FormulateInput
-              type="checkbox"
-              name="dielektrizitätskonstante"
-              label="leitfähigkeit"
-              help="JA oder Nein?"
             />
             <FormulateInput type="checkbox" name="magnetischeBesonderheiten" label="Magnetische Besonderheiten" />
-            <FormulateInput type="checkbox" name="optischeEigenschaften" label="Optische Eigenschaften" />
-            <FormulateInput type="checkbox" name="thermischesVerhalten" label="Thermisches Verhalten  " />
+            <FormulateInput type="text" name="optischeEigenschaften" label="Optische Eigenschaften" />
+            <FormulateInput type="text" name="thermischesVerhalten" label="Thermisches Verhalten  " />
           </FormulateInput>
         </FormulateInput>
         <FormulateInput type="group" name="oberfläche" :repeatable="false">
