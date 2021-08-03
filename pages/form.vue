@@ -10,6 +10,7 @@
         help="Nimm png, jpg or gif fürs upload."
         validation="mime:image/jpeg,image/png,image/gif"
       />
+      <FormulateInput type="text" name="ueberschrift" label="Überschrift" />
       <FormulateInput type="group" name="kategorie" :repeatable="false">
         <FormulateInput type="select" name="gruppe" label="Gruppe" :options="kategorie.gruppe" />
         <FormulateInput type="select" name="unterGruppe" label="Untergruppe" :options="kategorie.unterGruppe" />
@@ -24,7 +25,7 @@
         <FormulateInput type="group" name="elastizität" :repeatable="false">
           <FormulateInput type="number" name="min" label="min Elastizität" />
           <FormulateInput type="number" name="max" label="max Elastizität" />
-          <FormulateInput type="select" name="elastizitätEinheit" label="Einheit" :options="einheiten" />
+          <FormulateInput type="select" name="elastizitaetEinheit" label="Einheit" :options="einheiten" />
         </FormulateInput>
       </FormulateInput>
       <FormulateInput type="group" name="festigkeit" :repeatable="false">
@@ -49,7 +50,7 @@
           <FormulateInput type="select" name="brienellehärteEinheit" label="Einheit" :options="einheiten" />
         </FormulateInput>
         <FormulateInput type="text" name="nachgiebigkeit" label="Nachgiebigkeit (Duktilität)" />
-        <FormulateInput type="text" name="sprödigkeit" label="Sprödigkeit" />
+        <FormulateInput type="text" name="sproedigkeit" label="Sprödigkeit" />
       </FormulateInput>
       <FormulateInput type="group" name="differentiellesSchwindmaß " :repeatable="false">
         <FormulateInput type="group" name="tangential" :repeatable="false">
@@ -64,9 +65,8 @@
         </FormulateInput>
         <FormulateInput type="group" name="physikalischeEigenschaften " :repeatable="false">
           <FormulateInput type="group" name="elektrischeLeitfähigkeit" :repeatable="false">
-            <FormulateInput type="checkbox" name="leitfähigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" />
-            <FormulateInput
-            />
+            <FormulateInput type="checkbox" name="leitfaehigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" />
+            <FormulateInput />
             <FormulateInput type="checkbox" name="magnetischeBesonderheiten" label="Magnetische Besonderheiten" />
             <FormulateInput type="text" name="optischeEigenschaften" label="Optische Eigenschaften" />
             <FormulateInput type="text" name="thermischesVerhalten" label="Thermisches Verhalten  " />
