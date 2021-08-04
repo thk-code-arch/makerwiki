@@ -11,12 +11,14 @@
         validation="mime:image/jpeg,image/png,image/gif"
       />
       <FormulateInput type="text" name="ueberschrift" label="Überschrift" />
+      <h2 class="subtitle">Kategorie</h2>
       <FormulateInput type="group" name="kategorie" :repeatable="false">
         <FormulateInput type="select" name="gruppe" label="Gruppe" :options="kategorie.gruppe" />
         <FormulateInput type="select" name="unterGruppe" label="Untergruppe" :options="kategorie.unterGruppe" />
         <FormulateInput type="select" name="art" label="Art" :options="kategorie.art" />
       </FormulateInput>
       <FormulateInput type="group" name="mechanischeEigenschaften" :repeatable="false">
+              <h2 class="subtitle">Mechanische Eigenschaften</h2>
         <FormulateInput type="group" name="dichte" :repeatable="false">
           <FormulateInput type="number" name="min" label="min Dichte" />
           <FormulateInput type="number" name="max" label="max Dichte" />
@@ -29,6 +31,7 @@
         </FormulateInput>
       </FormulateInput>
       <FormulateInput type="group" name="festigkeit" :repeatable="false">
+                <h2 class="subtitle">Festigkeit</h2>
         <FormulateInput type="group" name="druck" :repeatable="false">
           <FormulateInput type="number" name="min" label="min Druck" />
           <FormulateInput type="number" name="max" label="max Druck" />
@@ -53,6 +56,7 @@
         <FormulateInput type="text" name="sproedigkeit" label="Sprödigkeit" />
       </FormulateInput>
       <FormulateInput type="group" name="differentiellesSchwindmaß " :repeatable="false">
+                  <h2 class="subtitle">Differentielles Schwindmaß</h2>
         <FormulateInput type="group" name="tangential" :repeatable="false">
           <FormulateInput type="number" name="min" label="min Tangential" />
           <FormulateInput type="number" name="max" label="max Tangential" />
@@ -64,6 +68,7 @@
           <FormulateInput type="select" name="radialEinheit" label="Einheit" :options="einheiten" />
         </FormulateInput>
         <FormulateInput type="group" name="physikalischeEigenschaften " :repeatable="false">
+                  <h2 class="subtitle">Physikalische Eigenschaften</h2>
           <FormulateInput type="group" name="elektrischeLeitfähigkeit" :repeatable="false">
             <FormulateInput type="checkbox" name="leitfaehigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" />
             <FormulateInput />
