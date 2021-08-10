@@ -101,7 +101,19 @@ export default {
     return {
       materialData: {
         kategorie: { gruppe: '', unterGruppe: '', art: '' },
-        mechanischeEigenschaften: { dichte: '', min: '', max: '', dichteEinheit: '' }
+        mechanischeEigenschaften: { dichte: '', min: '', max: '', dichteEinheit: '' },
+        elastizität: {min: '', max: '', elastizitaetEinheit: '' },
+        festigkeit: {druck: '', min: '', max: '', druckEinheit: ''},
+        zug: {min: '', max: '', zugEinheit: ''},
+        biege: {min: '', max: '', biegEinheit: ''},
+        brienellehärte: {min: '', max: '', brienellehärteEinheit: ''},
+        nachgiebigkeit:{},
+        sproedigkeit:{},
+        differentiellesSchwindmaß: { tangential: '', min: '', max: '', tangentialEinheit: '' },
+        radial: {min: '', max: '', radialEinheit: ''},
+        physikalischeEigenschaften: { elektrischeLeitfähigkeit: '', leitfaehigkeit: '', magnetischeBesonderheiten: '', optischeEigenschaften: '', thermischesVerhalten:'' },
+        oberfläche: {korrosionOxidation: ''}
+
       },
       fields: {},
       einheiten: {
