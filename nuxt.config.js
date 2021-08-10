@@ -18,11 +18,15 @@ const dynamicRoutes = getDynamicPaths(
 export default {
   mode: 'universal',
   // ? The env Property: https://nuxtjs.org/api/configuration-env/
+  server: {
+    host: '0',// default: localhost
+    port: 8080 // default: 3000
+  },
   env: {
     url:
       process.env.NODE_ENV === 'production'
         ? process.env.URL || 'http://createADotEnvFileAndSetURL'
-        : 'http://localhost:3000',
+        : 'http://localhost:8080',
     lang: SITE_INFO.sitelang || 'en-US'
   },
   /*
@@ -62,7 +66,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+
+  ],
   /*
    ** Nuxt.js dev-modules
    */

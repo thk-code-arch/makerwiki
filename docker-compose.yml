@@ -1,0 +1,12 @@
+version: "3"
+services:
+  makerwiki:
+    container_name: makerwiki
+    restart: always
+    build: .
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - ./:/app
+    ports:
+    - 8080:8080
