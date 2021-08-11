@@ -136,51 +136,91 @@
             v-model="materialData.festigkeit.brienellehaerte.einheit"
           />
         </FormulateInput>
-        <FormulateInput type="text" name="nachgiebigkeit" label="Nachgiebigkeit (Duktilität)" 
-        v-model="materialData.festigkeit.nachgiebigkeit"
+        <FormulateInput
+          type="text"
+          name="nachgiebigkeit"
+          label="Nachgiebigkeit (Duktilität)"
+          v-model="materialData.festigkeit.nachgiebigkeit"
         />
-        <FormulateInput type="text" name="sproedigkeit" label="Sprödigkeit" 
-        v-model="materialData.festigkeit.sproedigkeit"
+        <FormulateInput
+          type="text"
+          name="sproedigkeit"
+          label="Sprödigkeit"
+          v-model="materialData.festigkeit.sproedigkeit"
         />
       </FormulateInput>
       <FormulateInput type="group" name="differentiellesSchwindmaß " :repeatable="false">
         <h2 class="subtitle">Differentielles Schwindmaß</h2>
         <FormulateInput type="group" name="tangential" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Tangential" 
-          v-model="materialData.differentiellesSchwindmaß.tangential.min"
+          <FormulateInput
+            type="number"
+            name="min"
+            label="min Tangential"
+            v-model="materialData.differentiellesSchwindmaß.tangential.min"
           />
-          <FormulateInput type="number" name="max" label="max Tangential" 
-          v-model="materialData.differentiellesSchwindmaß.tangential.max"
+          <FormulateInput
+            type="number"
+            name="max"
+            label="max Tangential"
+            v-model="materialData.differentiellesSchwindmaß.tangential.max"
           />
-          <FormulateInput type="select" name="tangentialEinheit" label="Einheit" :options="einheiten" 
-          v-model="materialData.differentiellesSchwindmaß.tangential.einheit"
+          <FormulateInput
+            type="select"
+            name="tangentialEinheit"
+            label="Einheit"
+            :options="einheiten"
+            v-model="materialData.differentiellesSchwindmaß.tangential.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="radial" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Radial" 
-          v-model="materialData.differentiellesSchwindmaß.radial.min"
+          <FormulateInput
+            type="number"
+            name="min"
+            label="min Radial"
+            v-model="materialData.differentiellesSchwindmaß.radial.min"
           />
-          <FormulateInput type="number" name="max" label="max Radial" 
-          v-model="materialData.differentiellesSchwindmaß.radial.max"
+          <FormulateInput
+            type="number"
+            name="max"
+            label="max Radial"
+            v-model="materialData.differentiellesSchwindmaß.radial.max"
           />
-          <FormulateInput type="select" name="radialEinheit" label="Einheit" :options="einheiten" 
-          v-model="materialData.differentiellesSchwindmaß.radial.einheit"
+          <FormulateInput
+            type="select"
+            name="radialEinheit"
+            label="Einheit"
+            :options="einheiten"
+            v-model="materialData.differentiellesSchwindmaß.radial.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="physikalischeEigenschaften " :repeatable="false">
           <h2 class="subtitle">Physikalische Eigenschaften</h2>
           <FormulateInput type="group" name="elektrischeLeitfaehigkeit" :repeatable="false">
-            <FormulateInput type="checkbox" name="leitfaehigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" 
-            v-model="materialData.physikalischeEigenschaften.leitfaehigkeit"/>
+            <FormulateInput
+              type="checkbox"
+              name="leitfaehigkeit"
+              label="leitfähigkeit"
+              help="Leitet es oder nicht?"
+              v-model="materialData.physikalischeEigenschaften.leitfaehigkeit"
             />
-            <FormulateInput type="checkbox" name="magnetischeBesonderheiten" label="Magnetische Besonderheiten" 
-            v-model="materialData.physikalischeEigenschaften.magnetischeBesonderheiten"
             />
-            <FormulateInput type="text" name="optischeEigenschaften" label="Optische Eigenschaften" 
-            v-model="materialData.physikalischeEigenschaften.optischeEigenschaften"
+            <FormulateInput
+              type="checkbox"
+              name="magnetischeBesonderheiten"
+              label="Magnetische Besonderheiten"
+              v-model="materialData.physikalischeEigenschaften.magnetischeBesonderheiten"
             />
-            <FormulateInput type="text" name="thermischesVerhalten" label="Thermisches Verhalten" 
-            v-model="materialData.physikalischeEigenschaften.thermischesVerhalten"
+            <FormulateInput
+              type="text"
+              name="optischeEigenschaften"
+              label="Optische Eigenschaften"
+              v-model="materialData.physikalischeEigenschaften.optischeEigenschaften"
+            />
+            <FormulateInput
+              type="text"
+              name="thermischesVerhalten"
+              label="Thermisches Verhalten"
+              v-model="materialData.physikalischeEigenschaften.thermischesVerhalten"
             />
           </FormulateInput>
         </FormulateInput>
@@ -197,16 +237,37 @@
         </FormulateInput>
       </FormulateInput>
     </FormulateForm>
+  <button
+  class="bg-retro-purple"
+  @click="createMaterial()"
+  >
+    Klick mich
+
+  </button>
+
     <div>
       {{ materialData }}
+      {{ ip }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  methods: {
+    async createMaterial() {
+      console.log('created')
+      const ip = await this.$axios.$post('api/materials',{materialData: JSON.stringify(this.materialData)})
+
+      console.log(  await this.$axios.$get('api/materials'))
+    }
+  },
+  mounted() {
+//
+  },
   data() {
     return {
+      ip: '',
       materialData: {
         kategorie: { gruppe: '', unterGruppe: '', art: '' },
         mechanischeEigenschaften: {

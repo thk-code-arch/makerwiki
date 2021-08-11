@@ -81,7 +81,13 @@ export default {
    formulate: {
     configPath: '~/formulate.config.js'
   },
-  modules: ['@nuxtjs/markdownit', 'nuxt-purgecss'],
+  modules: ['@nuxtjs/markdownit', 'nuxt-purgecss', '@nuxtjs/axios'],
+  axios: {
+    proxy: true // Can be also an object with default options
+  },
+  proxy: {
+    '/api/': 'https://makerwiki.code-arch.com'
+  },
   markdownit: {
     injected: true
   },
