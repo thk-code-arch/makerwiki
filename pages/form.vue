@@ -13,77 +13,185 @@
       <FormulateInput type="text" name="ueberschrift" label="Überschrift" />
       <h2 class="subtitle">Kategorie</h2>
       <FormulateInput type="group" name="kategorie" :repeatable="false">
-        <FormulateInput type="select" name="gruppe" label="Gruppe" :options="kategorie.gruppe" v-model="materialData.kategorie.gruppe" />
-        <FormulateInput type="select" name="unterGruppe" label="Untergruppe" :options="kategorie.unterGruppe" />
-        <FormulateInput type="select" name="art" label="Art" :options="kategorie.art" />
+        <FormulateInput
+          type="select"
+          name="gruppe"
+          label="Gruppe"
+          :options="kategorie.gruppe"
+          v-model="materialData.kategorie.gruppe"
+        />
+        <FormulateInput
+          type="select"
+          name="unterGruppe"
+          label="Untergruppe"
+          :options="kategorie.unterGruppe"
+          v-model="materialData.kategorie.unterGruppe"
+        />
+        <FormulateInput
+          type="select"
+          name="art"
+          label="Art"
+          :options="kategorie.art"
+          v-model="materialData.kategorie.art"
+        />
       </FormulateInput>
       <FormulateInput type="group" name="mechanischeEigenschaften" :repeatable="false">
         <h2 class="subtitle">Mechanische Eigenschaften</h2>
         <FormulateInput type="group" name="dichte" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Dichte" />
-          <FormulateInput type="number" name="max" label="max Dichte" />
-          <FormulateInput type="select" name="dichteEinheit" label="Einheit" :options="einheiten" />
+          <FormulateInput
+            type="number"
+            name="min"
+            label="min Dichte"
+            v-model="materialData.mechanischeEigenschaften.dichte.min"
+          />
+          <FormulateInput
+            type="number"
+            name="max"
+            label="max Dichte"
+            v-model="materialData.mechanischeEigenschaften.dichte.max"
+          />
+          <FormulateInput
+            type="select"
+            name="dichteEinheit"
+            label="Einheit"
+            :options="einheiten"
+            v-model="materialData.mechanischeEigenschaften.dichte.einheit"
+          />
         </FormulateInput>
-        <FormulateInput type="group" name="elastizität" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Elastizität" />
-          <FormulateInput type="number" name="max" label="max Elastizität" />
-          <FormulateInput type="select" name="elastizitaetEinheit" label="Einheit" :options="einheiten" />
+        <FormulateInput type="group" name="elastizitaet" :repeatable="false">
+          <FormulateInput
+            type="number"
+            name="min"
+            label="min Elastizität"
+            v-model="materialData.mechanischeEigenschaften.elastizitaet.min"
+          />
+          <FormulateInput
+            type="number"
+            name="max"
+            label="max Elastizität"
+            v-model="materialData.mechanischeEigenschaften.elastizitaet.max"
+          />
+          <FormulateInput
+            type="select"
+            name="elastizitaetEinheit"
+            label="Einheit"
+            :options="einheiten"
+            v-model="materialData.mechanischeEigenschaften.elastizitaet.einheit"
+          />
         </FormulateInput>
       </FormulateInput>
       <FormulateInput type="group" name="festigkeit" :repeatable="false">
         <h2 class="subtitle">Festigkeit</h2>
         <FormulateInput type="group" name="druck" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Druck" />
-          <FormulateInput type="number" name="max" label="max Druck" />
-          <FormulateInput type="select" name="druckEinheit" label="Einheit" :options="einheiten" />
+          <FormulateInput type="number" name="min" label="min Druck" v-model="materialData.festigkeit.druck.min" />
+          <FormulateInput type="number" name="max" label="max Druck" v-model="materialData.festigkeit.druck.max" />
+          <FormulateInput
+            type="select"
+            name="druckEinheit"
+            label="Einheit"
+            :options="einheiten"
+            v-model="materialData.festigkeit.druck.einheit"
+          />
         </FormulateInput>
         <FormulateInput type="group" name="zug" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Zug" />
-          <FormulateInput type="number" name="max" label="max Zug" />
-          <FormulateInput type="select" name="zugEinheit" label="Einheit" :options="einheiten" />
+          <FormulateInput type="number" name="min" label="min Zug" v-model="materialData.festigkeit.zug.min" />
+          <FormulateInput type="number" name="max" label="max Zug" v-model="materialData.festigkeit.zug.max" />
+          <FormulateInput
+            type="select"
+            name="zugEinheit"
+            label="Einheit"
+            :options="einheiten"
+            v-model="materialData.festigkeit.zug.einheit"
+          />
         </FormulateInput>
         <FormulateInput type="group" name="biege" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Biege" />
-          <FormulateInput type="number" name="max" label="max Biege" />
-          <FormulateInput type="select" name="biegEinheit" label="Einheit" :options="einheiten" />
+          <FormulateInput type="number" name="min" label="min Biege" v-model="materialData.festigkeit.biege.min" />
+          <FormulateInput type="number" name="max" label="max Biege" v-model="materialData.festigkeit.biege.max" />
+          <FormulateInput
+            type="select"
+            name="biegEinheit"
+            label="Einheit"
+            :options="einheiten"
+            v-model="materialData.festigkeit.biege.einheit"
+          />
         </FormulateInput>
-        <FormulateInput type="group" name="brienellehärte" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Brienellehärte" />
-          <FormulateInput type="number" name="max" label="max Brienellehärte" />
-          <FormulateInput type="select" name="brienellehärteEinheit" label="Einheit" :options="einheiten" />
+        <FormulateInput type="group" name="brienellehaerte" :repeatable="false">
+          <FormulateInput
+            type="number"
+            name="min"
+            label="min Brienellehärte"
+            v-model="materialData.festigkeit.brienellehaerte.min"
+          />
+          <FormulateInput
+            type="number"
+            name="max"
+            label="max Brienellehärte"
+            v-model="materialData.festigkeit.brienellehaerte.max"
+          />
+          <FormulateInput
+            type="select"
+            name="brienellehaerteEinheit"
+            label="Einheit"
+            :options="einheiten"
+            v-model="materialData.festigkeit.brienellehaerte.einheit"
+          />
         </FormulateInput>
-        <FormulateInput type="text" name="nachgiebigkeit" label="Nachgiebigkeit (Duktilität)" />
-        <FormulateInput type="text" name="sproedigkeit" label="Sprödigkeit" />
+        <FormulateInput type="text" name="nachgiebigkeit" label="Nachgiebigkeit (Duktilität)" 
+        v-model="materialData.festigkeit.nachgiebigkeit"
+        />
+        <FormulateInput type="text" name="sproedigkeit" label="Sprödigkeit" 
+        v-model="materialData.festigkeit.sproedigkeit"
+        />
       </FormulateInput>
       <FormulateInput type="group" name="differentiellesSchwindmaß " :repeatable="false">
         <h2 class="subtitle">Differentielles Schwindmaß</h2>
         <FormulateInput type="group" name="tangential" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Tangential" />
-          <FormulateInput type="number" name="max" label="max Tangential" />
-          <FormulateInput type="select" name="tangentialEinheit" label="Einheit" :options="einheiten" />
+          <FormulateInput type="number" name="min" label="min Tangential" 
+          v-model="materialData.differentiellesSchwindmaß.tangential.min"
+          />
+          <FormulateInput type="number" name="max" label="max Tangential" 
+          v-model="materialData.differentiellesSchwindmaß.tangential.max"
+          />
+          <FormulateInput type="select" name="tangentialEinheit" label="Einheit" :options="einheiten" 
+          v-model="materialData.differentiellesSchwindmaß.tangential.einheit"
+          />
         </FormulateInput>
         <FormulateInput type="group" name="radial" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Radial" />
-          <FormulateInput type="number" name="max" label="max Radial" />
-          <FormulateInput type="select" name="radialEinheit" label="Einheit" :options="einheiten" />
+          <FormulateInput type="number" name="min" label="min Radial" 
+          v-model="materialData.differentiellesSchwindmaß.radial.min"
+          />
+          <FormulateInput type="number" name="max" label="max Radial" 
+          v-model="materialData.differentiellesSchwindmaß.radial.max"
+          />
+          <FormulateInput type="select" name="radialEinheit" label="Einheit" :options="einheiten" 
+          v-model="materialData.differentiellesSchwindmaß.radial.einheit"
+          />
         </FormulateInput>
         <FormulateInput type="group" name="physikalischeEigenschaften " :repeatable="false">
           <h2 class="subtitle">Physikalische Eigenschaften</h2>
-          <FormulateInput type="group" name="elektrischeLeitfähigkeit" :repeatable="false">
-            <FormulateInput type="checkbox" name="leitfaehigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" />
-            <FormulateInput />
-            <FormulateInput type="checkbox" name="magnetischeBesonderheiten" label="Magnetische Besonderheiten" />
-            <FormulateInput type="text" name="optischeEigenschaften" label="Optische Eigenschaften" />
-            <FormulateInput type="text" name="thermischesVerhalten" label="Thermisches Verhalten  " />
+          <FormulateInput type="group" name="elektrischeLeitfaehigkeit" :repeatable="false">
+            <FormulateInput type="checkbox" name="leitfaehigkeit" label="leitfähigkeit" help="Leitet es oder nicht?" 
+            v-model="materialData.physikalischeEigenschaften.leitfaehigkeit"/>
+            />
+            <FormulateInput type="checkbox" name="magnetischeBesonderheiten" label="Magnetische Besonderheiten" 
+            v-model="materialData.physikalischeEigenschaften.magnetischeBesonderheiten"
+            />
+            <FormulateInput type="text" name="optischeEigenschaften" label="Optische Eigenschaften" 
+            v-model="materialData.physikalischeEigenschaften.optischeEigenschaften"
+            />
+            <FormulateInput type="text" name="thermischesVerhalten" label="Thermisches Verhalten" 
+            v-model="materialData.physikalischeEigenschaften.thermischesVerhalten"
+            />
           </FormulateInput>
         </FormulateInput>
-        <FormulateInput type="group" name="oberfläche" :repeatable="false">
+        <FormulateInput type="group" name="oberflaeche" :repeatable="false">
           <FormulateInput
             type="radio"
             name="korrosionOxidation"
             label="Korrosion?"
             :repeatable="false"
             :options="{ ja: 'Ja', nein: 'Nein', vielleicht: 'Vielleicht' }"
+            v-model="materialData.physikalischeEigenschaften.korrosionOxidation"
           >
           </FormulateInput>
         </FormulateInput>
@@ -101,19 +209,30 @@ export default {
     return {
       materialData: {
         kategorie: { gruppe: '', unterGruppe: '', art: '' },
-        mechanischeEigenschaften: { dichte: '', min: '', max: '', dichteEinheit: '' },
-        elastizität: {min: '', max: '', elastizitaetEinheit: '' },
-        festigkeit: {druck: '', min: '', max: '', druckEinheit: ''},
-        zug: {min: '', max: '', zugEinheit: ''},
-        biege: {min: '', max: '', biegEinheit: ''},
-        brienellehärte: {min: '', max: '', brienellehärteEinheit: ''},
-        nachgiebigkeit:{},
-        sproedigkeit:{},
-        differentiellesSchwindmaß: { tangential: '', min: '', max: '', tangentialEinheit: '' },
-        radial: {min: '', max: '', radialEinheit: ''},
-        physikalischeEigenschaften: { elektrischeLeitfähigkeit: '', leitfaehigkeit: '', magnetischeBesonderheiten: '', optischeEigenschaften: '', thermischesVerhalten:'' },
-        oberfläche: {korrosionOxidation: ''}
-
+        mechanischeEigenschaften: {
+          dichte: { min: '', max: '', einheit: '' },
+          elastizitaet: { min: '', max: '', einheit: '' }
+        },
+        festigkeit: {
+          druck: { min: '', max: '', einheit: '' },
+          zug: { min: '', max: '', einheit: '' },
+          biege: { min: '', max: '', einheit: '' },
+          brienellehaerte: { min: '', max: '', einheit: '' },
+          nachgiebigkeit: '',
+          sproedigkeit: ''
+        },
+        differentiellesSchwindmaß: {
+          tangential: { min: '', max: '', einheit: '' },
+          radial: { min: '', max: '', einheit: '' }
+        },
+        physikalischeEigenschaften: {
+          elektrischeLeitfaehigkeit: '',
+          leitfaehigkeit: '',
+          magnetischeBesonderheiten: '',
+          optischeEigenschaften: '',
+          thermischesVerhalten: ''
+        },
+        oberflaeche: { korrosionOxidation: '' }
       },
       fields: {},
       einheiten: {
