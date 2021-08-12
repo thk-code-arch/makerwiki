@@ -299,12 +299,8 @@ export default {
   methods: {
     async createMaterial() {
       console.log('created')
-      const ip = await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
-      console.log(await this.$axios.$get('api/materials'))
+      await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
     }
-  },
-  mounted() {
-    //
   },
   data() {
     return {
@@ -345,15 +341,14 @@ export default {
           recyclingfaehigkeit: '',
           gefahrenpotentiale: '',
           umweltbelastung: ''
-        },
-        fields: {},
-        einheiten: {
-          kgm3: 'k/mg³',
-          nmm2: 'N/mm²',
-          prozent: '%'
         }
       },
-      kategorie: { gruppe: ['Holz', 'Stahl'], unterGruppe: ['Laubholz', 'Eisen'], art: ['Eiche', 'Aluminium'] }
+      kategorie: { gruppe: ['Holz', 'Stahl'], unterGruppe: ['Laubholz', 'Eisen'], art: ['Eiche', 'Aluminium'] },
+      einheiten: {
+        kgm3: 'k/mg³',
+        nmm2: 'N/mm²',
+        prozent: '%'
+      }
     }
   }
 }
