@@ -225,26 +225,74 @@
           </FormulateInput>
         </FormulateInput>
         <FormulateInput type="group" name="oberflaeche" :repeatable="false">
+          <h2 class="subtitle">Oberfläche</h2>
           <FormulateInput
             type="radio"
             name="korrosionOxidation"
             label="Korrosion?"
             :repeatable="false"
             :options="{ ja: 'Ja', nein: 'Nein', vielleicht: 'Vielleicht' }"
-            v-model="materialData.physikalischeEigenschaften.korrosionOxidation"
+            v-model="materialData.oberflaeche.korrosionOxidation"
+          />
+          <FormulateInput
+            type="radio"
+            name="abriebVerschleiß"
+            label="Abrieb/Verschleiß"
+            :repeatable="false"
+            :options="{ g: 'Gering', mi: 'Mittel', vi: 'Viel' }"
+            v-model="materialData.oberflaeche.abriebVerschleiß"
+          />
+        </FormulateInput>
+        <FormulateInput type="group" name="oekonomie" :repeatable="false">
+          <h2 class="subtitle">Ökonomie</h2>
+          <FormulateInput
+            type="text"
+            name="verfuegbarkeittransport"
+            label="Verfügbarkeit/Transport"
+            v-model="materialData.oekonomie.verfuegbarkeittransport"
+          />
+          <FormulateInput
+            type="radio"
+            name="wertschoepfung"
+            label="Wertschöpfung"
+            :repeatable="false"
+            :options="{ g: 'Gering', mi: 'Mittel', vi: 'Viel' }"
+            v-model="materialData.oekonomie.wertschoepfung"
+          />
+        </FormulateInput>
+        <FormulateInput type="group" name="oekonomie" :repeatable="false">
+          <h2 class="subtitle">Ökologie</h2>
+          <FormulateInput
+            type="radio"
+            name="recyclingfaehigkeit"
+            label="Recyclingfähigkeit"
+            :repeatable="false"
+            :options="{ ja: 'Ja', ne: 'Nein' }"
+            v-model="materialData.oekologie.recyclingfaehigkeit"
+          />
+          <FormulateInput
+            type="text"
+            name="gefahrenpotentiale"
+            label="Gefahrenpotentiale"
+            v-model="materialData.oekologie.gefahrenpotentiale"
+          />
+          <FormulateInput
+            type="text"
+            name="umweltbelastung"
+            label="Umweltbelastung"
+            v-model="materialData.oekologie.umweltbelastung"
           >
           </FormulateInput>
         </FormulateInput>
       </FormulateInput>
     </FormulateForm>
-  <button
-  class="bg-retro-purple"
-  @click="createMaterial()"
-  >
-    Klick mich
 
-  </button>
-
+    <button
+      class="bg-retro-purple hover:bg-retro-blue text-white font-bold py-2 px-4 border-b-4 border-retro-gray hover:border-retro-blue rounded"
+      @click="createMaterial()"
+    >
+      Klick mich
+    </button>
     <div>
       {{ materialData }}
       {{ ip }}
@@ -257,13 +305,13 @@ export default {
   methods: {
     async createMaterial() {
       console.log('created')
-      const ip = await this.$axios.$post('api/materials',{materialData: JSON.stringify(this.materialData)})
+      const ip = await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
 
-      console.log(  await this.$axios.$get('api/materials'))
+      console.log(await this.$axios.$get('api/materials'))
     }
   },
   mounted() {
-//
+    //
   },
   data() {
     return {
@@ -293,13 +341,25 @@ export default {
           optischeEigenschaften: '',
           thermischesVerhalten: ''
         },
-        oberflaeche: { korrosionOxidation: '' }
-      },
-      fields: {},
-      einheiten: {
-        kgm3: 'k/mg³',
-        nmm2: 'N/mm²',
-        prozent: '%'
+        oberflaeche: {
+          korrosionOxidation: '',
+          abriebVerschleiß: ''
+        },
+        oekonomie: {
+          verfuegbarkeittransport: '',
+          wertschoepfung: ''
+        },
+        oekologie: {
+          recyclingfaehigkeit: '',
+          gefahrenpotentiale: '',
+          umweltbelastung: ''
+        },
+        fields: {},
+        einheiten: {
+          kgm3: 'k/mg³',
+          nmm2: 'N/mm²',
+          prozent: '%'
+        }
       },
       kategorie: { gruppe: ['Holz', 'Stahl'], unterGruppe: ['Laubholz', 'Eisen'], art: ['Eiche', 'Aluminium'] }
     }
