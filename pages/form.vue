@@ -203,7 +203,6 @@
               help="Leitet es oder nicht?"
               v-model="materialData.physikalischeEigenschaften.leitfaehigkeit"
             />
-            />
             <FormulateInput
               type="checkbox"
               name="magnetischeBesonderheiten"
@@ -287,15 +286,10 @@
       </FormulateInput>
     </FormulateForm>
 
-    <button
-      class="bg-retro-purple hover:bg-retro-blue text-white font-bold py-2 px-4 border-b-4 border-retro-gray hover:border-retro-blue rounded"
-      @click="createMaterial()"
-    >
-      Klick mich
-    </button>
+    <FormulateInput type="button" label="Save" @click="createMaterial()" />
+
     <div>
       {{ materialData }}
-      {{ ip }}
     </div>
   </div>
 </template>
@@ -306,7 +300,6 @@ export default {
     async createMaterial() {
       console.log('created')
       const ip = await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
-
       console.log(await this.$axios.$get('api/materials'))
     }
   },
@@ -315,7 +308,6 @@ export default {
   },
   data() {
     return {
-      ip: '',
       materialData: {
         kategorie: { gruppe: '', unterGruppe: '', art: '' },
         mechanischeEigenschaften: {
@@ -336,7 +328,7 @@ export default {
         },
         physikalischeEigenschaften: {
           elektrischeLeitfaehigkeit: '',
-          leitfaehigkeit: '',
+          leitfaehigkeit: false,
           magnetischeBesonderheiten: '',
           optischeEigenschaften: '',
           thermischesVerhalten: ''
