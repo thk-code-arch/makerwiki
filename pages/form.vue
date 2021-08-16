@@ -2,15 +2,16 @@
   <div class="main text-center flex flex-col items-center justify-center">
     <h1 class="title">Formular</h1>
     <h2 class="subtitle">Material Formular</h2>
-    <FormulateForm v-model="fields">
+    <FormulateForm>
       <FormulateInput
         type="image"
         name="pic"
         label="Bild Auswählen"
         help="Nimm png, jpg or gif fürs upload."
         validation="mime:image/jpeg,image/png,image/gif"
+        v-model="materialData.bilder"
       />
-      <FormulateInput type="text" name="ueberschrift" label="Überschrift" />
+      <FormulateInput type="text" name="ueberschrift" label="Überschrift" v-model="materialData.ueberschrift" />
       <h2 class="subtitle">Kategorie</h2>
       <FormulateInput type="group" name="kategorie" :repeatable="false">
         <FormulateInput
@@ -302,9 +303,12 @@ export default {
       await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
     }
   },
+  mounted() {},
   data() {
     return {
       materialData: {
+        bilder: '',
+        ueberschrift: '',
         kategorie: { gruppe: '', unterGruppe: '', art: '' },
         mechanischeEigenschaften: {
           dichte: { min: '', max: '', einheit: '' },

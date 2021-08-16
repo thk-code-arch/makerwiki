@@ -60,7 +60,11 @@ module.exports = {
           'purple': '#752075',
           'green': '#609474',
           'grey': '#abb3bd',
-          'darkblue': '#222745'
+          'darkblue': '#222745',
+          'black' : '#000000',
+          'carminePink' : '#e86f68',
+          'Deeppurple' : '#800080',
+          'mediumpurple' : '#9932CC'
         }
       },
       opacity: {
