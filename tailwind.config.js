@@ -64,7 +64,9 @@ module.exports = {
           'black' : '#000000',
           'carminePink' : '#e86f68',
           'Deeppurple' : '#800080',
-          'mediumpurple' : '#9932CC'
+          'mediumpurple' : '#9932CC',
+          'fuchsia' : '#F012BE',
+          'aqua' : '#7FDBFF'
         }
       },
       opacity: {
