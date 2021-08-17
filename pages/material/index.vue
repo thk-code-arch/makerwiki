@@ -18,6 +18,13 @@ export default {
       materialPosts.push(JSON.parse(material.materialData))
     }
     return { materialPosts }
+
+export default {
+  async asyncData({ $axios }) {
+    const  = await $axios.$get('api/materials')
+    const materialPosts = []
+    for (const material of materialData) {
+      materialPosts.push(JSON.parse(material.materialData))
   }
 }
 </script>
