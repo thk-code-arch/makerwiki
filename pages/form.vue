@@ -303,7 +303,39 @@ export default {
       await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
     }
   },
-  mounted() {},
+  async asyncData({ $axios }) {
+    const categoryData = await $axios.$get('api/materials/category')
+
+    return { categoryData }
+  },
+  mounted() {
+    console.log(this.kategorie)
+  },
+  computed: {
+    kategorie() {
+      const kat = {
+        gruppe: this.categoryData.map(g => {
+          return {
+            label: g.label,
+            value: g.value
+          }
+        }),
+        unterGruppe: this.materialData.kategorie.gruppe
+          ? this.categoryData.find(x => x.value === this.materialData.kategorie.gruppe).untergruppe
+          : '',
+
+        art: this.materialData.kategorie.unterGruppe
+          ? this.categoryData
+              .find(x => x.value === this.materialData.kategorie.gruppe)
+              .untergruppe.find(x => x.value === this.materialData.kategorie.unterGruppe).art
+          : ''
+      }
+
+      console.log('hnorray', kat)
+      return kat
+    }
+  },
+
   data() {
     return {
       materialData: {
@@ -347,7 +379,6 @@ export default {
           umweltbelastung: ''
         }
       },
-      kategorie: { gruppe: ['Holz', 'Stahl'], unterGruppe: ['Laubholz', 'Eisen'], art: ['Eiche', 'Aluminium'] },
       einheiten: {
         kgm3: 'k/mg³',
         nmm2: 'N/mm²',

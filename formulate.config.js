@@ -24,7 +24,6 @@ export default {
               return "border border-gray-400 w-auto bg rounded px-2 py-2 mx-1 mb-1 leading-none focus:border-green-500 outline-none border-box  text-black flex.auto ease-linear transform hover:scale-105 transition duration-500 bg-retro-blue ";
 
         default:
-          console.log("hab dich",context)
           return "border border-gray-400 w-auto bg rounded px-2 py-2 mx-1 mb-1 leading-none focus:border-green-500 outline-none border-box  text-black flex.auto ease-linear transform hover:scale-105 transition duration-500 bg-retro-blue ";
       }
     },
