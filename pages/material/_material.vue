@@ -4,17 +4,17 @@
     <p class="mt-4">{{ materialPost.shortDescription }}</p>
     <h1 class="description">{{ materialPost.schwindmaß }}</h1>
     <img class="cover-image" :src="materialPost.image" />
-
   </article>
 </template>
 <script>
 export default {
-  async asyncData({ params, payload }) {
-    if (payload) return { materialPost: payload }
-    else
-      return {
-        materialPost: await require(`~/assets/content/material/${params.material}.json`),
-      }
-  },
+  mounted() {},
+  async asyncData({ $axios, params }) {
+    console.log(params)
+    const materialData = await $axios.$get('api/materials/get', {}, { id: params.material })
+    console.log(materialData.data)
+    const materialPost = materialData
+    return { materialPost }
+  }
 }
 </script>
