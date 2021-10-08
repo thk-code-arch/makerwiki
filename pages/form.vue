@@ -9,88 +9,44 @@
         label="Bild Auswählen"
         help="Nimm png, jpg or gif fürs upload."
         validation="mime:image/jpeg,image/png,image/gif"
-        v-model="materialData.bilder"
+        v-model.lazy="materialData.bilder"
       />
-      <FormulateInput type="text" name="ueberschrift" label="Überschrift" v-model="materialData.ueberschrift" />
-      <Categories :categoryData="categoryData" />
-      <FormulateInput type="group" name="mechanischeEigenschaften" :repeatable="false">
-        <h2 class="subtitle">Mechanische Eigenschaften</h2>
-        <FormulateInput type="group" name="dichte" :repeatable="false">
-          <FormulateInput
-            type="number"
-            name="min"
-            label="min Dichte"
-            v-model="materialData.mechanischeEigenschaften.dichte.min"
-          />
-          <FormulateInput
-            type="number"
-            name="max"
-            label="max Dichte"
-            v-model="materialData.mechanischeEigenschaften.dichte.max"
-          />
-          <FormulateInput
-            type="select"
-            name="dichteEinheit"
-            label="Einheit"
-            :options="einheiten"
-            v-model="materialData.mechanischeEigenschaften.dichte.einheit"
-          />
-        </FormulateInput>
-        <FormulateInput type="group" name="elastizitaet" :repeatable="false">
-          <FormulateInput
-            type="number"
-            name="min"
-            label="min Elastizität"
-            v-model="materialData.mechanischeEigenschaften.elastizitaet.min"
-          />
-          <FormulateInput
-            type="number"
-            name="max"
-            label="max Elastizität"
-            v-model="materialData.mechanischeEigenschaften.elastizitaet.max"
-          />
-          <FormulateInput
-            type="select"
-            name="elastizitaetEinheit"
-            label="Einheit"
-            :options="einheiten"
-            v-model="materialData.mechanischeEigenschaften.elastizitaet.einheit"
-          />
-        </FormulateInput>
-      </FormulateInput>
+      <FormulateInput type="text" name="ueberschrift" label="Überschrift" v-model.lazy="materialData.ueberschrift" />
+      <Categories :categoryData="categoryData" @changeCategories="ChangeC($event)" />
+      <MechProperties :einheiten="einheiten" @changeMP="ChangeMP($event)" />
       <FormulateInput type="group" name="festigkeit" :repeatable="false">
         <h2 class="subtitle">Festigkeit</h2>
         <FormulateInput type="group" name="druck" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Druck" v-model="materialData.festigkeit.druck.min" />
-          <FormulateInput type="number" name="max" label="max Druck" v-model="materialData.festigkeit.druck.max" />
+          <FormulateInput type="number" name="min" label="min Druck" v-model.lazy="materialData.festigkeit.druck.min" />
+          <FormulateInput type="number" name="max" label="max Druck" v-model.lazy="materialData.festigkeit.druck.max" />
           <FormulateInput
             type="select"
             name="druckEinheit"
             label="Einheit"
             :options="einheiten"
-            v-model="materialData.festigkeit.druck.einheit"
+            v-model.lazy="materialData.festigkeit.druck.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="zug" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Zug" v-model="materialData.festigkeit.zug.min" />
-          <FormulateInput type="number" name="max" label="max Zug" v-model="materialData.festigkeit.zug.max" />
+          <FormulateInput type="number" name="min" label="min Zug" v-model.lazy="materialData.festigkeit.zug.min" />
+          <FormulateInput type="number" name="max" label="max Zug" v-model.lazy="materialData.festigkeit.zug.max" />
           <FormulateInput
             type="select"
             name="zugEinheit"
             label="Einheit"
             :options="einheiten"
-            v-model="materialData.festigkeit.zug.einheit"
+            v-model.lazy="materialData.festigkeit.zug.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="biege" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Biege" v-model="materialData.festigkeit.biege.min" />
-          <FormulateInput type="number" name="max" label="max Biege" v-model="materialData.festigkeit.biege.max" />
+          <FormulateInput type="number" name="min" label="min Biege" v-model.lazy="materialData.festigkeit.biege.min" />
+          <FormulateInput type="number" name="max" label="max Biege" v-model.lazy="materialData.festigkeit.biege.max" />
           <FormulateInput
             type="select"
             name="biegEinheit"
             label="Einheit"
             :options="einheiten"
-            v-model="materialData.festigkeit.biege.einheit"
+            v-model.lazy="materialData.festigkeit.biege.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="brienellehaerte" :repeatable="false">
@@ -98,33 +54,33 @@
             type="number"
             name="min"
             label="min Brienellehärte"
-            v-model="materialData.festigkeit.brienellehaerte.min"
+            v-model.lazy="materialData.festigkeit.brienellehaerte.min"
           />
           <FormulateInput
             type="number"
             name="max"
             label="max Brienellehärte"
-            v-model="materialData.festigkeit.brienellehaerte.max"
+            v-model.lazy="materialData.festigkeit.brienellehaerte.max"
           />
           <FormulateInput
             type="select"
             name="brienellehaerteEinheit"
             label="Einheit"
             :options="einheiten"
-            v-model="materialData.festigkeit.brienellehaerte.einheit"
+            v-model.lazy="materialData.festigkeit.brienellehaerte.einheit"
           />
         </FormulateInput>
         <FormulateInput
           type="text"
           name="nachgiebigkeit"
           label="Nachgiebigkeit (Duktilität)"
-          v-model="materialData.festigkeit.nachgiebigkeit"
+          v-model.lazy="materialData.festigkeit.nachgiebigkeit"
         />
         <FormulateInput
           type="text"
           name="sproedigkeit"
           label="Sprödigkeit"
-          v-model="materialData.festigkeit.sproedigkeit"
+          v-model.lazy="materialData.festigkeit.sproedigkeit"
         />
       </FormulateInput>
       <FormulateInput type="group" name="differentiellesSchwindmaß " :repeatable="false">
@@ -134,20 +90,20 @@
             type="number"
             name="min"
             label="min Tangential"
-            v-model="materialData.differentiellesSchwindmaß.tangential.min"
+            v-model.lazy="materialData.differentiellesSchwindmaß.tangential.min"
           />
           <FormulateInput
             type="number"
             name="max"
             label="max Tangential"
-            v-model="materialData.differentiellesSchwindmaß.tangential.max"
+            v-model.lazy="materialData.differentiellesSchwindmaß.tangential.max"
           />
           <FormulateInput
             type="select"
             name="tangentialEinheit"
             label="Einheit"
             :options="einheiten"
-            v-model="materialData.differentiellesSchwindmaß.tangential.einheit"
+            v-model.lazy="materialData.differentiellesSchwindmaß.tangential.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="radial" :repeatable="false">
@@ -155,20 +111,20 @@
             type="number"
             name="min"
             label="min Radial"
-            v-model="materialData.differentiellesSchwindmaß.radial.min"
+            v-model.lazy="materialData.differentiellesSchwindmaß.radial.min"
           />
           <FormulateInput
             type="number"
             name="max"
             label="max Radial"
-            v-model="materialData.differentiellesSchwindmaß.radial.max"
+            v-model.lazy="materialData.differentiellesSchwindmaß.radial.max"
           />
           <FormulateInput
             type="select"
             name="radialEinheit"
             label="Einheit"
             :options="einheiten"
-            v-model="materialData.differentiellesSchwindmaß.radial.einheit"
+            v-model.lazy="materialData.differentiellesSchwindmaß.radial.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="physikalischeEigenschaften " :repeatable="false">
@@ -179,25 +135,25 @@
               name="leitfaehigkeit"
               label="leitfähigkeit"
               help="Leitet es oder nicht?"
-              v-model="materialData.physikalischeEigenschaften.leitfaehigkeit"
+              v-model.lazy="materialData.physikalischeEigenschaften.leitfaehigkeit"
             />
             <FormulateInput
               type="checkbox"
               name="magnetischeBesonderheiten"
               label="Magnetische Besonderheiten"
-              v-model="materialData.physikalischeEigenschaften.magnetischeBesonderheiten"
+              v-model.lazy="materialData.physikalischeEigenschaften.magnetischeBesonderheiten"
             />
             <FormulateInput
               type="text"
               name="optischeEigenschaften"
               label="Optische Eigenschaften"
-              v-model="materialData.physikalischeEigenschaften.optischeEigenschaften"
+              v-model.lazy="materialData.physikalischeEigenschaften.optischeEigenschaften"
             />
             <FormulateInput
               type="text"
               name="thermischesVerhalten"
               label="Thermisches Verhalten"
-              v-model="materialData.physikalischeEigenschaften.thermischesVerhalten"
+              v-model.lazy="materialData.physikalischeEigenschaften.thermischesVerhalten"
             />
           </FormulateInput>
         </FormulateInput>
@@ -209,7 +165,7 @@
             label="Korrosion?"
             :repeatable="false"
             :options="{ ja: 'Ja', nein: 'Nein', vielleicht: 'Vielleicht' }"
-            v-model="materialData.oberflaeche.korrosionOxidation"
+            v-model.lazy="materialData.oberflaeche.korrosionOxidation"
           />
           <FormulateInput
             type="radio"
@@ -217,7 +173,7 @@
             label="Abrieb/Verschleiß"
             :repeatable="false"
             :options="{ g: 'Gering', mi: 'Mittel', vi: 'Viel' }"
-            v-model="materialData.oberflaeche.abriebVerschleiß"
+            v-model.lazy="materialData.oberflaeche.abriebVerschleiß"
           />
         </FormulateInput>
         <FormulateInput type="group" name="oekonomie" :repeatable="false">
@@ -226,7 +182,7 @@
             type="text"
             name="verfuegbarkeittransport"
             label="Verfügbarkeit/Transport"
-            v-model="materialData.oekonomie.verfuegbarkeittransport"
+            v-model.lazy="materialData.oekonomie.verfuegbarkeittransport"
           />
           <FormulateInput
             type="radio"
@@ -234,7 +190,7 @@
             label="Wertschöpfung"
             :repeatable="false"
             :options="{ g: 'Gering', mi: 'Mittel', vi: 'Viel' }"
-            v-model="materialData.oekonomie.wertschoepfung"
+            v-model.lazy="materialData.oekonomie.wertschoepfung"
           />
         </FormulateInput>
         <FormulateInput type="group" name="oekonomie" :repeatable="false">
@@ -245,19 +201,21 @@
             label="Recyclingfähigkeit"
             :repeatable="false"
             :options="{ ja: 'Ja', ne: 'Nein' }"
-            v-model="materialData.oekologie.recyclingfaehigkeit"
+            v-model.lazy="materialData.oekologie.recyclingfaehigkeit"
           />
-          <FormulateInput
+
+          <input
             type="text"
             name="gefahrenpotentiale"
             label="Gefahrenpotentiale"
-            v-model="materialData.oekologie.gefahrenpotentiale"
+            placeholder="edit me"
+            v-model.lazy="materialData.oekologie.gefahrenpotentiale"
           />
           <FormulateInput
             type="text"
             name="umweltbelastung"
             label="Umweltbelastung"
-            v-model="materialData.oekologie.umweltbelastung"
+            v-model.lazy="materialData.oekologie.umweltbelastung"
           >
           </FormulateInput>
         </FormulateInput>
@@ -274,14 +232,25 @@
 
 <script>
 import Categories from '~/components/Categories'
+import MechProperties from '~/components/MechProperties'
+
 export default {
   components: {
-    Categories
+    Categories,
+    MechProperties
   },
   methods: {
     async createMaterial() {
       console.log('created')
       await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
+    },
+    ChangeC(categories) {
+      console.log('text')
+      this.materialData.kategorie = categories
+    },
+    ChangeMP(mechproperties) {
+      console.log('text')
+      this.materialData.mechanischeEigenschaften = mechproperties
     }
   },
   async asyncData({ $axios }) {
