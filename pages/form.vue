@@ -9,7 +9,7 @@
         label="Bild Auswählen"
         help="Nimm png, jpg or gif fürs upload."
         validation="mime:image/jpeg,image/png,image/gif"
-        v-model.lazy="materialData.bilder"
+        :uploader="uploadImage"
       />
       <FormulateInput type="text" name="ueberschrift" label="Überschrift" v-model.lazy="materialData.ueberschrift" />
       <Categories :categoryData="categoryData" @changeCategories="ChangeC($event)" />
@@ -204,7 +204,7 @@
             v-model.lazy="materialData.oekologie.recyclingfaehigkeit"
           />
 
-          <input
+          <FormulateInput
             type="text"
             name="gefahrenpotentiale"
             label="Gefahrenpotentiale"
@@ -251,6 +251,14 @@ export default {
     ChangeMP(mechproperties) {
       console.log('text')
       this.materialData.mechanischeEigenschaften = mechproperties
+    },
+    async uploadImage(file, progress, error, options) {
+      let formData = new FormData()
+      formData.append('file', file)
+
+      const res = await this.$axios.$post('api/upload_image', formData)
+      console.log(res)
+      this.materialData.bilder = res.filepath
     }
   },
   async asyncData({ $axios }) {
@@ -258,6 +266,7 @@ export default {
 
     return { categoryData }
   },
+
   mounted() {
     console.log(this.kategorie)
   },
