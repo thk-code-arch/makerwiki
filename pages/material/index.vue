@@ -1,13 +1,21 @@
 <template>
   <main v-if="materialPosts" class="main">
     <h1 class="title text-left">materials</h1>
-    <ul v-for="(materialPost, index) in materialPosts" :key="index" class="articles">
-      <nuxt-link class="article article--clickable" :to="`material/${materialPost.id}`">
-        <h3 class="article-title">{{ materialPost.material.kategorie.art }}</h3>
-        <p>{{ materialPost.material.kategorie.gruppe }}</p>
-      </nuxt-link>
-    </ul>
-    {{ materialPosts }}
+    <div class=" flex flex-wrap">
+      <div v-for="(materialPost, index) in materialPosts" :key="index" class="text-left flex w-1/3 py-4 rounded-lg">
+        <nuxt-link
+          class="max-w-5xl mx-auto px-4 py-2 rounded border border-solid border-primary"
+          :to="`material/${materialPost.id}`"
+        >
+          <img :src="`/api/${materialPost.material.bilder}`" />
+          <h3 class="article-title">{{ materialPost.material.ueberschrift }}</h3>
+          <p>
+            {{ materialPost.material.kategorie.gruppe }} - {{ materialPost.material.kategorie.unterGruppe }} -
+            {{ materialPost.material.kategorie.art }}
+          </p>
+        </nuxt-link>
+      </div>
+    </div>
   </main>
 </template>
 <script>
