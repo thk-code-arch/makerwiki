@@ -1,13 +1,13 @@
 <!-- // Copyright (c) 2021 Steffen Stein <mail@steffenstein.com> For LICENSE see docs/LICENSE -->
 
 <template>
-  <div class="flex flex-col px-8 pt-6 pb-8 mb-4 bg-white rounded">
+  <div class="flex flex-col px-8 pt-6 pb-8 mb-4  rounded">
     <FormulateForm @submit="login">
       <FormulateInput
         type="text"
         name="username"
         v-model="user.username"
-        label="Username"
+        label="Email"
         validation="required"
       />
       <FormulateInput
@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import User from "@/models/user";
+import User from "~/models/user";
+
 
 export default {
   name: "SignIn",
@@ -41,7 +42,8 @@ export default {
       if (this.user.username && this.user.password) {
         this.$store.dispatch("auth/login", this.user).then(
           () => {
-            this.$router.push("/projects");
+            //this.$router.push("/projects");
+            console.log('done')
           },
           (error) => {
             this.loading = false;
