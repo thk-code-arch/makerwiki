@@ -1,12 +1,13 @@
 <template>
   <div class="main text-center flex flex-col items-center justify-center">
-    <h1 class="title">MakerWiki</h1>
-    <h2 class="subtitle">Prototype</h2>
+   <SignIn/> 
   </div>
 </template>
 
 <script>
+import SignIn from "~/components/auth/Signin"
 export default {
+  components:{SignIn},
   head() {
     return {
     }

@@ -1,6 +1,12 @@
 <template>
   <div class="fixed bottom-0 left-0 m-3">
-    <component :is="`icon-${color}`" @click="changeColorMode" title="Toggle background color" />
+    <div class="flex flex-row space-x-2">
+    <component :is="`icon-${color}`" @click="changeColorMode" title="Toggle background color" class="p-2" />
+        <nuxt-link to="/settings">
+        
+    <Settings class="icon p-2" />
+        </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -9,13 +15,15 @@ import { COLOR_MODE_FALLBACK } from '~/utils/globals.js'
 import IconSystem from '~/components/icons/system.svg?inline'
 import IconLight from '~/components/icons/light.svg?inline'
 import IconDark from '~/components/icons/dark.svg?inline'
+import Settings from '~/components/icons/settings.svg?inline'
 
 export default {
   name: 'ColorModePicker',
   components: {
     IconSystem,
     IconLight,
-    IconDark
+    IconDark,
+    Settings
   },
   data() {
     return {
