@@ -8,12 +8,5 @@
 </template>
 <script>
 export default {
-  async asyncData({ params, payload }) {
-    if (payload) return { processPost: payload }
-    else
-      return {
-        processPost: await require(`~/assets/content/process/${params.process}.json`),
-      }
-  },
 }
 </script>
