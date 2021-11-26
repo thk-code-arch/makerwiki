@@ -56,6 +56,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    "~/plugins/axios"
 
   ],
   /*
@@ -72,7 +73,7 @@ export default {
   },
   modules: ['@nuxtjs/markdownit', 'nuxt-purgecss', '@nuxtjs/axios'],
   axios: {
-    proxy: true // Can be also an object with default options
+    proxy: true ,// Can be also an object with default options,
   },
   proxy: {
     '/api/': 'https://makerwiki.code-arch.com'

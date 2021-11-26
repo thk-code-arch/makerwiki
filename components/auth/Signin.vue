@@ -41,16 +41,14 @@ export default {
       this.loading = true;
       if (this.user.username && this.user.password) {
         this.$store.dispatch("auth/login", this.user).then(
-          () => {
+          (response) => {
             //this.$router.push("/projects");
-            console.log('done')
+            console.log('done',response)
           },
           (error) => {
             this.loading = false;
-            this.message =
-              (error.response && error.response.data) ||
-              error.message ||
-              error.toString();
+            this.message.error =
+              error
           }
         );
       }
