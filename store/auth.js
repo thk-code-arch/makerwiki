@@ -1,64 +1,53 @@
 // Copyright (c) 2021 Steffen Stein <mail@steffenstein.com> For LICENSE see docs/LICENSE
 
 import AuthService from '~/services/auth.service';
-let user = {}
-console.log(user)
+let user = false
 if (process.browser) {
-  user = JSON.parse(localStorage.getItem('user'));
-console.log(user)
+  user = JSON.parse(localStorage.getItem('user')) || false;
 }
-const initialState = user
-  ? { status: { loggedIn: true }, user }
-  : { status: { loggedIn: false }, user: null };
 
-export const state = () => ({
-    initialState
-  })
+
+const userStatus = user 
+  ?  { loggedIn: true }
+  :  { loggedIn: false  };
+
+export const state = () => (
+ userStatus
+  )
+  
 
   export const mutations = {
 
     loginSuccess(state, user) {
-      state.status.loggedIn = true;
-      state.user = user;
-    },
-    updatedProfile(state, user) {
-      state.user.username = user.username;
-      state.user.email = user.email;
-      state.user.profile_image = user.profile_image;
+      state.loggedIn = true;
     },
     loginFailure(state) {
-      state.status.loggedIn = false;
-      state.user = null;
+      state.loggedIn = false;
     },
     logout(state) {
-      state.status.loggedIn = false;
-      state.user = null;
+      state.loggedIn = false;
     },
     registerSuccess(state) {
-      state.status.loggedIn = false;
+      state.loggedIn = false;
     },
     registerFailure(state) {
-      state.status.loggedIn = false;
+      state.loggedIn = false;
     }
   }
   export const actions = {
-
-
     login({ commit }, user) {
     return this.$axios
-      .$post( '/api/auth/login', {
+      .$post( 'api/auth/login', {
         username: user.username,
         password: user.password
       })
       .then(response => {
-          localStorage.setItem('user', JSON.stringify(response.data));
-          commit('loginSuccess', user);
-          return Promise.resolve(user);
+        localStorage.setItem('user', JSON.stringify(response));
+        commit('loginSuccess');
       })
       .catch(error => {
-        console.log(error.response.data.error)
+        console.log(error)
           commit('loginFailure');
-          return Promise.reject(error);
       });
     },
     logout({ commit }) {
