@@ -12,7 +12,7 @@
           class="max-w-5xl mx-auto px-4 py-2 rounded border border-solid border-primary"
           :to="`material/${materialPost.id}`"
         >
-          <img :src="`/api/${materialPost.material.bilder}`" />
+          <img :src="`/api${materialPost.material.bilder}`" />
           <h3 class="article-title">{{ materialPost.material.ueberschrift }}</h3>
           <p>
             {{ materialPost.material.kategorie.gruppe }} - {{ materialPost.material.kategorie.unterGruppe }} -
