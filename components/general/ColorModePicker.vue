@@ -1,11 +1,10 @@
 <template>
   <div class="fixed bottom-0 left-0 m-3">
     <div class="flex flex-row space-x-2">
-    <component :is="`icon-${color}`" @click="changeColorMode" title="Toggle background color" class="p-2" />
-        <nuxt-link to="/settings">
-        
-    <Settings class="icon p-2" />
-        </nuxt-link>
+      <component :is="`icon-${color}`" @click="changeColorMode" title="Toggle background color" class="p-2" />
+      <nuxt-link to="/backend">
+        <Settings class="icon p-2" />
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -23,11 +22,11 @@ export default {
     IconSystem,
     IconLight,
     IconDark,
-    Settings
+    Settings,
   },
   data() {
     return {
-      color: COLOR_MODE_FALLBACK
+      color: COLOR_MODE_FALLBACK,
     }
   },
   watch: {
@@ -42,8 +41,8 @@ export default {
         } else {
           this.color = COLOR_MODE_FALLBACK
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     changeColorMode() {
@@ -60,8 +59,8 @@ export default {
         default:
           return (this.$colorMode.preference = COLOR_MODE_FALLBACK)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
