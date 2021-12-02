@@ -1,8 +1,8 @@
 <template>
-  <main v-if="materialPosts" class="main ">
+  <main v-if="materialPosts" class="main">
     <Popup v-show="showPopup" />
     <h1 class="title text-left">materials</h1>
-    <div class=" flex flex-wrap">
+    <div class="flex flex-wrap">
       <div
         v-for="(materialPost, index) in materialPosts"
         :key="index"
@@ -21,10 +21,13 @@
         </nuxt-link>
       </div>
     </div>
+    <div v-on:click="downloadJSON">Download JSON</div>
   </main>
 </template>
 <script>
 import Popup from '~/components/Popup.vue'
+import download from 'downloadjs'
+
 export default {
   async asyncData({ $axios }) {
     const materialData = await $axios.$get('api/materials')
@@ -38,8 +41,13 @@ export default {
   components: { Popup },
   data() {
     return {
-      showPopup: true
+      showPopup: true,
     }
-  }
+  },
+  methods: {
+    downloadJSON() {
+      download(JSON.stringify(this.materialPosts), 'apidata.json', 'text/plain')
+    },
+  },
 }
 </script>
