@@ -1,11 +1,9 @@
 // Copyright (c) 2021 Steffen Stein <mail@steffenstein.com> For LICENSE see docs/LICENSE
 
 
-
-
 export const state = () => ({
 
- loggedIn: process.server ? '' : !!localStorage.getItem('user')
+ loggedIn: false
 }
 
   )
@@ -13,7 +11,7 @@ export const state = () => ({
 
   export const mutations = {
 
-    loginSuccess(state, user) {
+    loginSuccess(state) {
       state.loggedIn = true;
     },
     loginFailure(state) {

@@ -13,7 +13,15 @@ import ColorModePicker from '~/components/general/ColorModePicker.vue'
 export default {
   components: {
     Header,
-    ColorModePicker
-  }
+    ColorModePicker,
+  },
+  mounted() {
+    if (process.client) {
+      const savedData = localStorage.getItem('user')
+      if (savedData) {
+        this.$store.commit('auth/loginSuccess')
+      }
+    }
+  },
 }
 </script>
