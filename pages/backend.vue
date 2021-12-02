@@ -11,7 +11,14 @@
         <nuxt-link class="btn block" to="/process">Settings</nuxt-link>
       </li>
     </ul>
-    <profile />
+    <div class="main text-center flex flex-col items-center justify-center">
+      <div v-for="tab in tabs" v-bind:key="tab">
+        <button v-if="currentTab != tab.component" v-on:click="currentTab = tab.component" class="p-4 white">
+          {{ tab.name }}
+        </button>
+      </div>
+      <component v-bind:is="currentTabComponent"></component>
+    </div>
   </div>
 </template>
 
@@ -29,6 +36,16 @@ export default {
     const resp = await $axios.$get('api/profile')
     console.log(resp.data)
     return { resp }
+  },
+  data() {
+    return {
+      currentTab: 'profile',
+      tabs: [
+        { name: 'Register', component: 'profile' },
+        { name: '+ Material', component: 'material' },
+        { name: '+ Process', component: 'process' },
+      ],
+    }
   },
 }
 </script>
