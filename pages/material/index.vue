@@ -21,7 +21,7 @@
         </nuxt-link>
       </div>
     </div>
-    <div v-on:click="downloadJSON">Download JSON</div>
+    <div class="cursor-pointer" v-on:click="downloadJSON">Download JSON</div>
   </main>
 </template>
 <script>
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     downloadJSON() {
-      download(JSON.stringify(this.materialPosts), 'apidata.json', 'text/plain')
+      download(JSON.stringify(this.materialPosts), 'materials.json', 'text/plain')
     },
   },
 }
