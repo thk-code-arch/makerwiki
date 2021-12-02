@@ -1,18 +1,13 @@
 // Copyright (c) 2021 Steffen Stein <mail@steffenstein.com> For LICENSE see docs/LICENSE
 
-import AuthService from '~/services/auth.service';
-let user = false
-if (process.browser) {
-  user = JSON.parse(localStorage.getItem('user')) || false;
+
+
+
+export const state = () => ({
+
+ loggedIn: process.server ? '' : !!localStorage.getItem('user')
 }
 
-
-const userStatus = user 
-  ?  { loggedIn: true }
-  :  { loggedIn: false  };
-
-export const state = () => (
- userStatus
   )
   
 
@@ -58,16 +53,23 @@ export const state = () => (
       commit('updatedProfile',updateUser);
     },
     register({ commit }, user) {
-      return AuthService.register(user).then(
-        response => {
+    return this.$axios
+      .$post( 'api/auth/register', {
+        username: user.username,
+        password: user.password,
+        email: user.email,
+        invitecode: user.invitecode
+
+      })
+      .then(response => {
           commit('registerSuccess');
           return Promise.resolve(response.data);
-        },
-        error => {
+      })
+      .catch(error => {
+        console.log(error)
           commit('registerFailure');
           return Promise.reject(error);
-        }
-      );
+      });
     }
   }
 

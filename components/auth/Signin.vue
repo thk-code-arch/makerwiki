@@ -42,7 +42,7 @@ export default {
       if (this.user.username && this.user.password) {
         this.$store.dispatch("auth/login", this.user).then(
           (response) => {
-            //this.$router.push("/projects");
+            this.$router.push("/settings");
             console.log('done',response)
           },
           (error) => {
