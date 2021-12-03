@@ -5,6 +5,7 @@
       <nuxt-link to="/backend">
         <Settings class="icon p-2" />
       </nuxt-link>
+      <Logout @click="logOut" v-if="isLoggedin" class="icon p-2" />
     </div>
   </div>
 </template>
@@ -15,6 +16,7 @@ import IconSystem from '~/components/icons/system.svg?inline'
 import IconLight from '~/components/icons/light.svg?inline'
 import IconDark from '~/components/icons/dark.svg?inline'
 import Settings from '~/components/icons/settings.svg?inline'
+import Logout from '~/components/icons/logout.svg?inline'
 
 export default {
   name: 'ColorModePicker',
@@ -23,11 +25,17 @@ export default {
     IconLight,
     IconDark,
     Settings,
+    Logout,
   },
   data() {
     return {
       color: COLOR_MODE_FALLBACK,
     }
+  },
+  computed: {
+    isLoggedin() {
+      return this.$store.state.auth.loggedIn
+    },
   },
   watch: {
     '$colorMode.value': {
@@ -59,6 +67,10 @@ export default {
         default:
           return (this.$colorMode.preference = COLOR_MODE_FALLBACK)
       }
+    },
+    logOut() {
+      this.$store.dispatch('auth/logout')
+      this.$router.push('/login')
     },
   },
 }

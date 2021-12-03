@@ -44,7 +44,9 @@ export const state = () => ({
       });
     },
     logout({ commit }) {
-      AuthService.logout();
+      if(process.client){
+        localStorage.removeItem('user');
+      }
       commit('logout');
     },
     updateProfile({ commit },updateUser) {
