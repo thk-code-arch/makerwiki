@@ -4,6 +4,14 @@ export const state = () => ({
   categories: []
 })
 
+export const getters = {
+
+  getMaterialById: (state) => (id) => {
+    return state.materials.find(material => material.id === id)
+  }
+
+
+}
 export const mutations = {
   SET_MATERIALS(state, materials) {
     state.materials = materials
