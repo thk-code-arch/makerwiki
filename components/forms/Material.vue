@@ -263,7 +263,7 @@ export default {
   },
   computed: {
     categoryData() {
-      return this.$store.state.data.categories
+      return this.$store.getters['data/sortedCategories']
     },
   },
   mounted() {

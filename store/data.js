@@ -7,8 +7,39 @@ export const state = () => ({
 export const getters = {
 
   getMaterialById: (state) => (id) => {
-    console.log(id)
     return state.materials.find(material => material.id === id)
+  },
+  getCategoryById: (state) => (id) => {
+    return state.categories.find(cat => cat._id === id)
+  },
+  sortedCategories: (state) => {
+    const all = state.categories
+    const gruppe = all.filter((p) => p.ebene === 'gruppe');
+    const untergruppe = all.filter((p) => p.ebene === 'untergruppe');
+    const art = all.filter((p) => p.ebene === 'art');
+
+    return gruppe.map((g) => {
+      return {
+        value: g._id,
+        label: g.name,
+        untergruppe: untergruppe
+          .filter((ug) => ug.parent === g.name)
+          .map((ug) => {
+            return {
+              value: ug._id,
+              label: ug.name,
+              art: art
+                .filter((art) => art.parent === ug.name)
+                .map((art) => {
+                  return {
+                    value: art._id,
+                    label: art.name,
+                  };
+                }),
+            };
+          }),
+      };
+    });
   }
 
 

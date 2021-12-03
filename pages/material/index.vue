@@ -12,10 +12,11 @@
           :to="`material/${materialPost.id}`"
         >
           <img :src="`/api${materialPost.material.bilder}`" />
-          <h3 class="article-title">{{ materialPost.material.ueberschrift }}</h3>
+          <h3 class="subtitle">{{ materialPost.material.ueberschrift }}</h3>
           <p>
-            {{ materialPost.material.kategorie.gruppe }} - {{ materialPost.material.kategorie.unterGruppe }} -
-            {{ materialPost.material.kategorie.art }}
+            {{ categoryName(materialPost.material.kategorie.gruppe) }} -
+            {{ categoryName(materialPost.material.kategorie.unterGruppe) }} -
+            {{ categoryName(materialPost.material.kategorie.art) }}
           </p>
         </nuxt-link>
       </div>
@@ -40,6 +41,9 @@ export default {
     return {}
   },
   methods: {
+    categoryName(id) {
+      return this.$store.getters['data/getCategoryById'](id)?.name
+    },
     downloadJSON() {
       download(JSON.stringify(this.materialPosts), 'materials.json', 'text/plain')
     },
