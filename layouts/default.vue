@@ -21,6 +21,9 @@ export default {
       if (savedData) {
         this.$store.commit('auth/loginSuccess')
       }
+      this.$store.dispatch('data/getMaterials')
+      this.$store.dispatch('data/getCategories')
+      this.$store.dispatch('data/getProcesses')
     }
   },
 }

@@ -9,12 +9,10 @@
 <script>
 export default {
   mounted() {},
-  async asyncData({ $axios, params }) {
-    console.log(params)
-    const materialData = await $axios.$get('api/materials/get', {}, { id: params.material })
-    console.log(materialData.data)
-    const materialPost = materialData
-    return { materialPost }
-  }
+  computed: {
+    materialPost() {
+      return this.$store.getters['data/getMaterialById'](this.$route.params.material)?.material
+    },
+  },
 }
 </script>

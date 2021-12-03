@@ -7,6 +7,7 @@ export const state = () => ({
 export const getters = {
 
   getMaterialById: (state) => (id) => {
+    console.log(id)
     return state.materials.find(material => material.id === id)
   }
 
