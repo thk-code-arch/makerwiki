@@ -1,6 +1,5 @@
 <template>
   <main v-if="materialPosts" class="main">
-    <Popup v-show="showPopup" />
     <h1 class="title text-left">materials</h1>
     <div class="flex flex-wrap">
       <div
@@ -25,24 +24,20 @@
   </main>
 </template>
 <script>
-import Popup from '~/components/Popup.vue'
 import download from 'downloadjs'
 
 export default {
-  async asyncData({ $axios }) {
-    const materialData = await $axios.$get('api/materials')
-    console.log(materialData)
-    const materialPosts = []
-    for (const material of materialData) {
-      materialPosts.push({ id: material._id, material: JSON.parse(material.materialData) })
-    }
-    return { materialPosts }
+  computed: {
+    materialPosts() {
+      return this.$store.state.data.materials
+    },
   },
-  components: { Popup },
+  mounted() {
+    this.$store.dispatch('data/getMaterials')
+  },
+
   data() {
-    return {
-      showPopup: true,
-    }
+    return {}
   },
   methods: {
     downloadJSON() {

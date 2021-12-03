@@ -237,7 +237,7 @@ import MechProperties from '~/components/MechProperties'
 export default {
   components: {
     Categories,
-    MechProperties
+    MechProperties,
   },
   methods: {
     async createMaterial() {
@@ -259,16 +259,15 @@ export default {
       const res = await this.$axios.$post('api/upload_image', formData)
       console.log(res)
       this.materialData.bilder = res.filepath
-    }
+    },
   },
-  async asyncData({ $axios }) {
-    const categoryData = await $axios.$get('api/materials/category')
-
-    return { categoryData }
+  computed: {
+    categoryData() {
+      return this.$store.state.data.categories
+    },
   },
-
   mounted() {
-    console.log(this.kategorie)
+    this.$store.dispatch('data/getCategories')
   },
 
   data() {
@@ -279,7 +278,7 @@ export default {
         kategorie: { gruppe: '', unterGruppe: '', art: '' },
         mechanischeEigenschaften: {
           dichte: { min: '', max: '', einheit: '' },
-          elastizitaet: { min: '', max: '', einheit: '' }
+          elastizitaet: { min: '', max: '', einheit: '' },
         },
         festigkeit: {
           druck: { min: '', max: '', einheit: '' },
@@ -287,39 +286,39 @@ export default {
           biege: { min: '', max: '', einheit: '' },
           brienellehaerte: { min: '', max: '', einheit: '' },
           nachgiebigkeit: '',
-          sproedigkeit: ''
+          sproedigkeit: '',
         },
         differentiellesSchwindmaß: {
           tangential: { min: '', max: '', einheit: '' },
-          radial: { min: '', max: '', einheit: '' }
+          radial: { min: '', max: '', einheit: '' },
         },
         physikalischeEigenschaften: {
           elektrischeLeitfaehigkeit: '',
           leitfaehigkeit: false,
           magnetischeBesonderheiten: '',
           optischeEigenschaften: '',
-          thermischesVerhalten: ''
+          thermischesVerhalten: '',
         },
         oberflaeche: {
           korrosionOxidation: '',
-          abriebVerschleiß: ''
+          abriebVerschleiß: '',
         },
         oekonomie: {
           verfuegbarkeittransport: '',
-          wertschoepfung: ''
+          wertschoepfung: '',
         },
         oekologie: {
           recyclingfaehigkeit: '',
           gefahrenpotentiale: '',
-          umweltbelastung: ''
-        }
+          umweltbelastung: '',
+        },
       },
       einheiten: {
         kgm3: 'k/mg³',
         nmm2: 'N/mm²',
-        prozent: '%'
-      }
+        prozent: '%',
+      },
     }
-  }
+  },
 }
 </script>
