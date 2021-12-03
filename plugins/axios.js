@@ -15,5 +15,9 @@ if (process.browser) {
       if (code === 400) {
         redirect('/400')
       }
+      if (code === 401) {
+        console.log('auth error')
+        redirect('/login')
+      }
     })
   }

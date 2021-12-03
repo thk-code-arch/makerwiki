@@ -41,6 +41,7 @@ export const state = () => ({
       .catch(error => {
         console.log(error)
           commit('loginFailure');
+          return Promise.reject(error);
       });
     },
     logout({ commit }) {

@@ -5,7 +5,7 @@
     <FormulateForm @submit="login">
       <FormulateInput type="text" name="username" v-model="user.username" label="Email" validation="required" />
       <FormulateInput type="password" name="password" v-model="user.password" label="Password" validation="required" />
-      <p class="text-red-500">{{ message.error }}</p>
+      <p class="text-red-500">{{ message }}</p>
       <FormulateInput label="Login" type="submit" />
     </FormulateForm>
   </div>
@@ -20,7 +20,7 @@ export default {
     return {
       user: new User('', ''),
       loading: false,
-      message: {},
+      message: '',
     }
   },
   methods: {
@@ -30,11 +30,10 @@ export default {
         this.$store.dispatch('auth/login', this.user).then(
           (response) => {
             this.$router.push('/backend')
-            console.log('done', response)
           },
           (error) => {
             this.loading = false
-            this.message.error = error
+            this.message = 'Login failed'
           }
         )
       }
