@@ -1,9 +1,13 @@
 <template>
   <div class="main text-center flex flex-col items-center justify-center">
-    <h1 class="title">Formular</h1>
-    <h2 class="subtitle">Material Formular</h2>
+    <div v-if="isLoggedin">
+      <h1 class="title">Formular</h1>
+      <h2 class="subtitle">Material Formular</h2>
+    </div>
+
     <FormulateForm>
       <FormulateInput
+        v-if="isLoggedin"
         type="image"
         name="pic"
         label="Bild Auswählen"
@@ -11,8 +15,14 @@
         validation="mime:image/jpeg,image/png,image/gif"
         :uploader="uploadImage"
       />
-      <FormulateInput type="text" name="ueberschrift" label="Überschrift" v-model.lazy="materialData.ueberschrift" />
-      <Categories :categoryData="categoryData" @changeCategories="ChangeC($event)" />
+      <FormulateInput
+        v-if="isLoggedin"
+        type="text"
+        name="ueberschrift"
+        label="Überschrift"
+        v-model.lazy="materialData.ueberschrift"
+      />
+      <Categories v-if="isLoggedin" :categoryData="categoryData" @changeCategories="ChangeC($event)" />
       <MechProperties :einheiten="einheiten" @changeMP="ChangeMP($event)" />
       <FormulateInput type="group" name="festigkeit" :repeatable="false">
         <h2 class="subtitle">Festigkeit</h2>
@@ -235,6 +245,7 @@ import Categories from '~/components/Categories'
 import MechProperties from '~/components/MechProperties'
 
 export default {
+  props: ['existingmaterialData'],
   components: {
     Categories,
     MechProperties,
@@ -245,7 +256,6 @@ export default {
       await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
     },
     ChangeC(categories) {
-      console.log('text')
       this.materialData.kategorie = categories
     },
     ChangeMP(mechproperties) {
@@ -265,9 +275,15 @@ export default {
     categoryData() {
       return this.$store.getters['data/sortedCategories']
     },
+    isLoggedin() {
+      return this.$store.state.auth.loggedIn
+    },
   },
   mounted() {
-    this.$store.dispatch('data/getCategories')
+    if (this.existingmaterialData.id) {
+      console.log(JSON.stringify(this.existingmaterialData.material))
+      this.materialData = { ...this.materialData, ...this.existingmaterialData.material }
+    }
   },
 
   data() {
