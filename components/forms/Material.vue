@@ -278,9 +278,12 @@ export default {
     isLoggedin() {
       return this.$store.state.auth.loggedIn
     },
+    isNew() {
+      return this.existingmaterialData?.id ? false : true
+    },
   },
   mounted() {
-    if (this.existingmaterialData.id) {
+    if (this.existingmaterialData?.id) {
       console.log(JSON.stringify(this.existingmaterialData.material))
       this.materialData = { ...this.materialData, ...this.existingmaterialData.material }
     }
