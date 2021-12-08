@@ -233,8 +233,8 @@
     </FormulateForm>
 
     <FormulateInput v-if="isNew" type="button" label="Save" @click="createMaterial()" />
-    <FormulateInput v-if="!isNew" type="button" label="Update" @click="updateMaterial()" />
-    <FormulateInput v-if="!isNew" type="button" label="Delete" @click="deleteMaterial()" />
+    <FormulateInput v-if="!isNew && isLoggedin" type="button" label="Update" @click="updateMaterial()" />
+    <FormulateInput v-if="!isNew && isLoggedin" type="button" label="Delete" @click="deleteMaterial()" />
 
     <div></div>
   </div>

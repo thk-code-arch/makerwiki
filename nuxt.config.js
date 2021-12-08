@@ -79,7 +79,7 @@ export default {
     proxy: true ,// Can be also an object with default options,
   },
   proxy: {
-    '/api/': 'https://makerwiki.code-arch.com'
+    '/api/': 'https://api.makerwiki.code-arch.com'
   },
   markdownit: {
     injected: true
