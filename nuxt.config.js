@@ -9,6 +9,8 @@ import { COLOR_MODE_FALLBACK } from './utils/globals.js'
 
 export default {
   mode: 'universal',
+  ssr: false,
+  target: 'static',
   // ? The env Property: https://nuxtjs.org/api/configuration-env/
   server: {
     host: '0',// default: localhost
@@ -43,6 +45,7 @@ export default {
     ] // ? Imports the font 'Karla' and is optimized by the netlify plugin 'Subfont'
   },
   generate: {
+    fallback: true
   },
   /*
    ** Customize the progress-bar color
@@ -139,32 +142,4 @@ export default {
       ogImage: '/ogp.jpg'
     }
   }
-}
-
-/**
- * Create an array of URLs from a list of files
- * @param {*} urlFilepathTable - example below
- * {
- *   blog: 'blog/*.json',
- *   projects: 'projects/*.json'
- * }
- *
- * @return {Array} - Will return those files into urls for SSR generated .html's like
- * [
- *   /blog/2019-08-27-incidunt-laborum-e ,
- *   /projects/story-test-story-1
- * ]
- */
-function getDynamicPaths(urlFilepathTable, cwdPath) {
-  console.log('Going to generate dynamicRoutes for these collection types: ', urlFilepathTable)
-  const dynamicPaths = [].concat(
-    ...Object.keys(urlFilepathTable).map(url => {
-      const filepathGlob = urlFilepathTable[url]
-      return glob.sync(filepathGlob, { cwd: cwdPath }).map(filepath => {
-        return `/${url}/${path.basename(filepath, '.json')}`
-      })
-    })
-  )
-  console.log('Found these dynamicPaths that will be SSR generated:', dynamicPaths)
-  return dynamicPaths
 }

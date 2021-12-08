@@ -254,6 +254,22 @@ export default {
     async createMaterial() {
       console.log('created')
       await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
+      redirect('/material')
+    },
+    async updateMaterial() {
+      console.log('updated')
+      await this.$axios.$post('api/materials/update', {
+        id: this.existingmaterialData?.id,
+        materialData: JSON.stringify(this.materialData),
+      })
+      redirect('/material')
+    },
+    async deleteMaterial() {
+      if (confirm('Do you really want to delete?')) {
+        console.log('deleted')
+        await this.$axios.$post('api/materials/delete', { id: this.existingmaterialData?.id })
+        redirect('/material')
+      }
     },
     ChangeC(categories) {
       this.materialData.kategorie = categories

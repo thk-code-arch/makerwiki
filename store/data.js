@@ -60,7 +60,9 @@ export const actions = {
     this.$axios.$get('api/materials').then(response => {
       const materialPosts = []
       for (const material of response) {
+        if(material.materialData){
         materialPosts.push({ id: material._id, material: JSON.parse(material.materialData) })
+        }
       }
       commit('SET_MATERIALS', materialPosts)
     })
