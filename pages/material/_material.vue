@@ -1,12 +1,12 @@
 <template>
   <article v-if="materialPost" class="main article">
-    <h1 class="article-title">{{ materialPost.material.ueberschrift }}</h1>
+    <h1 class="article-title">{{ materialPost.materialData.ueberschrift }}</h1>
     <h1 class="description">
-      {{ categoryName(materialPost.material.kategorie.gruppe) }} -
-      {{ categoryName(materialPost.material.kategorie.unterGruppe) }} -
-      {{ categoryName(materialPost.material.kategorie.art) }}
+      {{ categoryName(materialPost.materialData.kategorie.gruppe) }} -
+      {{ categoryName(materialPost.materialData.kategorie.unterGruppe) }} -
+      {{ categoryName(materialPost.materialData.kategorie.art) }}
     </h1>
-    <img class="cover-image" :src="'/api' + materialPost.material.bilder" />
+    <img class="cover-image" :src="'/api' + materialPost.materialData.bilder" />
     <material :existingmaterialData="materialPost" />
   </article>
 </template>
