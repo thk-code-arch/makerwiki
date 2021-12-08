@@ -254,7 +254,7 @@ export default {
     async createMaterial() {
       console.log('created')
       await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
-      redirect('/material')
+      this.$router.push({ path: '/material' })
     },
     async updateMaterial() {
       console.log('updated')
@@ -262,13 +262,13 @@ export default {
         id: this.existingmaterialData?.id,
         materialData: JSON.stringify(this.materialData),
       })
-      redirect('/material')
+      this.$router.push({ path: '/material' })
     },
     async deleteMaterial() {
       if (confirm('Do you really want to delete?')) {
         console.log('deleted')
         await this.$axios.$post('api/materials/delete', { id: this.existingmaterialData?.id })
-        redirect('/material')
+        this.$router.push({ path: '/material' })
       }
     },
     ChangeC(categories) {
@@ -300,8 +300,8 @@ export default {
   },
   mounted() {
     if (this.existingmaterialData?.id) {
-      console.log(JSON.stringify(this.existingmaterialData.material))
-      this.materialData = { ...this.materialData, ...this.existingmaterialData.material }
+      console.log(JSON.stringify(this.existingmaterialData.materialData))
+      this.materialData = { ...this.materialData, ...this.existingmaterialData.materialData }
     }
   },
 

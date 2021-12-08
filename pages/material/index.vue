@@ -11,12 +11,12 @@
           class="max-w-5xl mx-auto px-4 py-2 rounded border border-solid border-primary"
           :to="`material/${materialPost.id}`"
         >
-          <img :src="`/api${materialPost.material.bilder}`" />
-          <h3 class="subtitle">{{ materialPost.material.ueberschrift }}</h3>
+          <img :src="`/api${materialPost.materialData.bilder}`" />
+          <h3 class="subtitle">{{ materialPost.materialData.ueberschrift }}</h3>
           <p>
-            {{ categoryName(materialPost.material.kategorie.gruppe) }} -
-            {{ categoryName(materialPost.material.kategorie.unterGruppe) }} -
-            {{ categoryName(materialPost.material.kategorie.art) }}
+            {{ categoryName(materialPost.materialData.kategorie.gruppe) }} -
+            {{ categoryName(materialPost.materialData.kategorie.unterGruppe) }} -
+            {{ categoryName(materialPost.materialData.kategorie.art) }}
           </p>
         </nuxt-link>
       </div>
