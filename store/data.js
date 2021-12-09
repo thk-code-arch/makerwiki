@@ -58,21 +58,12 @@ export const mutations = {
 export const actions = {
   getMaterials({ commit }) {
     this.$axios.$get('api/materials').then(response => {
-      for (let i=0; i < response.length; i++) {
-        if(response[i].materialData){
-        response[i].materialData = JSON.parse(response[i].materialData)
-        }
-      }
       commit('SET_MATERIALS', response)
     })
   },
   getProcesses({ commit }) {
     this.$axios.$get('api/processes').then(response => {
-      const materialPosts = []
-      for (const material of response) {
-        materialPosts.push({ id: material._id, material: JSON.parse(material.materialData) })
-      }
-      commit('SET_PROCESSES', materialPosts)
+      commit('SET_PROCESSES', response)
     })
   },
   getCategories({ commit }) {

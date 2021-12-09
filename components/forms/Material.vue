@@ -253,7 +253,7 @@ export default {
   methods: {
     async createMaterial() {
       console.log('created')
-      await this.$axios.$post('api/materials', { materialData: JSON.stringify(this.materialData) })
+      await this.$axios.$post('api/materials', { materialData: this.materialData })
       this.$router.push({ path: '/material' })
     },
     async updateMaterial() {
