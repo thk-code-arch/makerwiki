@@ -20,6 +20,7 @@
         type="text"
         name="ueberschrift"
         label="Überschrift"
+        :disabled="!isLoggedin"
         v-model.lazy="materialData.ueberschrift"
       />
       <Categories
@@ -36,35 +37,74 @@
       <FormulateInput type="group" name="festigkeit" :repeatable="false">
         <h2 class="subtitle">Festigkeit</h2>
         <FormulateInput type="group" name="druck" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Druck" v-model.lazy="materialData.festigkeit.druck.min" />
-          <FormulateInput type="number" name="max" label="max Druck" v-model.lazy="materialData.festigkeit.druck.max" />
+          <FormulateInput
+            type="number"
+            name="min"
+            label="min Druck"
+            :disabled="!isLoggedin"
+            v-model.lazy="materialData.festigkeit.druck.min"
+          />
+          <FormulateInput
+            type="number"
+            name="max"
+            label="max Druck"
+            :disabled="!isLoggedin"
+            v-model.lazy="materialData.festigkeit.druck.max"
+          />
           <FormulateInput
             type="select"
             name="druckEinheit"
             label="Einheit"
             :options="einheiten"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.festigkeit.druck.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="zug" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Zug" v-model.lazy="materialData.festigkeit.zug.min" />
-          <FormulateInput type="number" name="max" label="max Zug" v-model.lazy="materialData.festigkeit.zug.max" />
+          <FormulateInput
+            type="number"
+            name="min"
+            label="min Zug"
+            :disabled="!isLoggedin"
+            v-model.lazy="materialData.festigkeit.zug.min"
+          />
+          <FormulateInput
+            type="number"
+            name="max"
+            label="max Zug"
+            :disabled="!isLoggedin"
+            v-model.lazy="materialData.festigkeit.zug.max"
+          />
           <FormulateInput
             type="select"
             name="zugEinheit"
             label="Einheit"
             :options="einheiten"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.festigkeit.zug.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="biege" :repeatable="false">
-          <FormulateInput type="number" name="min" label="min Biege" v-model.lazy="materialData.festigkeit.biege.min" />
-          <FormulateInput type="number" name="max" label="max Biege" v-model.lazy="materialData.festigkeit.biege.max" />
+          <FormulateInput
+            type="number"
+            name="min"
+            label="min Biege"
+            :disabled="!isLoggedin"
+            v-model.lazy="materialData.festigkeit.biege.min"
+          />
+          <FormulateInput
+            type="number"
+            name="max"
+            label="max Biege"
+            :disabled="!isLoggedin"
+            v-model.lazy="materialData.festigkeit.biege.max"
+          />
           <FormulateInput
             type="select"
             name="biegEinheit"
             label="Einheit"
             :options="einheiten"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.festigkeit.biege.einheit"
           />
         </FormulateInput>
@@ -73,12 +113,14 @@
             type="number"
             name="min"
             label="min Brienellehärte"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.festigkeit.brienellehaerte.min"
           />
           <FormulateInput
             type="number"
             name="max"
             label="max Brienellehärte"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.festigkeit.brienellehaerte.max"
           />
           <FormulateInput
@@ -86,6 +128,7 @@
             name="brienellehaerteEinheit"
             label="Einheit"
             :options="einheiten"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.festigkeit.brienellehaerte.einheit"
           />
         </FormulateInput>
@@ -93,12 +136,14 @@
           type="text"
           name="nachgiebigkeit"
           label="Nachgiebigkeit (Duktilität)"
+          :disabled="!isLoggedin"
           v-model.lazy="materialData.festigkeit.nachgiebigkeit"
         />
         <FormulateInput
           type="text"
           name="sproedigkeit"
           label="Sprödigkeit"
+          :disabled="!isLoggedin"
           v-model.lazy="materialData.festigkeit.sproedigkeit"
         />
       </FormulateInput>
@@ -109,12 +154,14 @@
             type="number"
             name="min"
             label="min Tangential"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.differentiellesSchwindmass.tangential.min"
           />
           <FormulateInput
             type="number"
             name="max"
             label="max Tangential"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.differentiellesSchwindmass.tangential.max"
           />
           <FormulateInput
@@ -122,6 +169,7 @@
             name="tangentialEinheit"
             label="Einheit"
             :options="einheiten"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.differentiellesSchwindmass.tangential.einheit"
           />
         </FormulateInput>
@@ -130,12 +178,14 @@
             type="number"
             name="min"
             label="min Radial"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.differentiellesSchwindmass.radial.min"
           />
           <FormulateInput
             type="number"
             name="max"
             label="max Radial"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.differentiellesSchwindmass.radial.max"
           />
           <FormulateInput
@@ -143,6 +193,7 @@
             name="radialEinheit"
             label="Einheit"
             :options="einheiten"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.differentiellesSchwindmass.radial.einheit"
           />
         </FormulateInput>
@@ -154,24 +205,28 @@
               name="leitfaehigkeit"
               label="leitfähigkeit"
               help="Leitet es oder nicht?"
+              :disabled="!isLoggedin"
               v-model.lazy="materialData.physikalischeEigenschaften.leitfaehigkeit"
             />
             <FormulateInput
               type="checkbox"
               name="magnetischeBesonderheiten"
               label="Magnetische Besonderheiten"
+              :disabled="!isLoggedin"
               v-model.lazy="materialData.physikalischeEigenschaften.magnetischeBesonderheiten"
             />
             <FormulateInput
               type="text"
               name="optischeEigenschaften"
               label="Optische Eigenschaften"
+              :disabled="!isLoggedin"
               v-model.lazy="materialData.physikalischeEigenschaften.optischeEigenschaften"
             />
             <FormulateInput
               type="text"
               name="thermischesVerhalten"
               label="Thermisches Verhalten"
+              :disabled="!isLoggedin"
               v-model.lazy="materialData.physikalischeEigenschaften.thermischesVerhalten"
             />
           </FormulateInput>
@@ -184,6 +239,7 @@
             label="Korrosion?"
             :repeatable="false"
             :options="{ ja: 'Ja', nein: 'Nein', vielleicht: 'Vielleicht' }"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.oberflaeche.korrosionOxidation"
           />
           <FormulateInput
@@ -192,6 +248,7 @@
             label="Abrieb/Verschleiss"
             :repeatable="false"
             :options="{ g: 'Gering', mi: 'Mittel', vi: 'Viel' }"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.oberflaeche.abriebVerschleiss"
           />
         </FormulateInput>
@@ -201,6 +258,7 @@
             type="text"
             name="verfuegbarkeittransport"
             label="Verfügbarkeit/Transport"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.oekonomie.verfuegbarkeittransport"
           />
           <FormulateInput
@@ -209,6 +267,7 @@
             label="Wertschöpfung"
             :repeatable="false"
             :options="{ g: 'Gering', mi: 'Mittel', vi: 'Viel' }"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.oekonomie.wertschoepfung"
           />
         </FormulateInput>
@@ -220,6 +279,7 @@
             label="Recyclingfähigkeit"
             :repeatable="false"
             :options="{ ja: 'Ja', ne: 'Nein' }"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.oekologie.recyclingfaehigkeit"
           />
 
@@ -228,12 +288,14 @@
             name="gefahrenpotentiale"
             label="Gefahrenpotentiale"
             placeholder="edit me"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.oekologie.gefahrenpotentiale"
           />
           <FormulateInput
             type="text"
             name="umweltbelastung"
             label="Umweltbelastung"
+            :disabled="!isLoggedin"
             v-model.lazy="materialData.oekologie.umweltbelastung"
           >
           </FormulateInput>
