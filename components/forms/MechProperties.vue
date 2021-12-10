@@ -50,16 +50,17 @@
 <script>
 export default {
   name: 'MechProperties',
-  props: ['einheiten'],
+  props: ['einheiten', 'selectedMechprops'],
   data() {
     return {
       materialData: {
         mechanischeEigenschaften: {
           dichte: { min: '', max: '', einheit: '' },
-          elastizitaet: { min: '', max: '', einheit: '' }
-        }
-      }
+          elastizitaet: { min: '', max: '', einheit: '' },
+          ...this.selectedMechprops,
+        },
+      },
     }
-  }
+  },
 }
 </script>

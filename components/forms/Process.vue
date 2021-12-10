@@ -20,9 +20,7 @@
 
       <FormulateInput type="button" label="Save" class="main text-center flex flex-col flow-root" />
     </FormulateForm>
-    <div>
-      {{ processData }}
-    </div>
+    <div></div>
   </div>
 </template>
 <script>
@@ -34,14 +32,14 @@ export default {
         return this.processData.versuch.length
       }
       return 1
-    }
+    },
   },
   data() {
     return {
       processData: {
-        versuch: []
-      }
+        versuch: [],
+      },
     }
-  }
+  },
 }
 </script>

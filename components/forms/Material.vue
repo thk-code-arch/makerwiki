@@ -22,8 +22,17 @@
         label="Überschrift"
         v-model.lazy="materialData.ueberschrift"
       />
-      <Categories v-if="isLoggedin" :categoryData="categoryData" @changeCategories="ChangeC($event)" />
-      <MechProperties :einheiten="einheiten" @changeMP="ChangeMP($event)" />
+      <Categories
+        v-if="isLoggedin"
+        :categoryData="categoryData"
+        :selectedCategories="materialData.kategorie"
+        @changeCategories="ChangeC($event)"
+      />
+      <MechProperties
+        :einheiten="einheiten"
+        :selectedMechprops="materialData.mechanischeEigenschaften"
+        @changeMP="ChangeMP($event)"
+      />
       <FormulateInput type="group" name="festigkeit" :repeatable="false">
         <h2 class="subtitle">Festigkeit</h2>
         <FormulateInput type="group" name="druck" :repeatable="false">
@@ -241,8 +250,8 @@
 </template>
 
 <script>
-import Categories from '~/components/Categories'
-import MechProperties from '~/components/MechProperties'
+import Categories from '~/components/forms/Categories'
+import MechProperties from '~/components/forms/MechProperties'
 
 export default {
   props: ['existingmaterialData'],
@@ -299,7 +308,7 @@ export default {
     },
   },
   mounted() {
-    if (this.existingmaterialData?.id) {
+    if (this.exddistingmaterialData?.id) {
       console.log(JSON.stringify(this.existingmaterialData.materialData))
       this.materialData = { ...this.materialData, ...this.existingmaterialData.materialData }
     }
@@ -347,6 +356,7 @@ export default {
           gefahrenpotentiale: '',
           umweltbelastung: '',
         },
+        ...this.existingmaterialData?.materialData,
       },
       einheiten: {
         kgm3: 'k/mg³',

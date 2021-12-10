@@ -3,7 +3,7 @@
     <div>
       <h2 class="subtitle">Kategorie</h2>
       <FormulateInput type="group" name="kategorie" :repeatable="false">
-        <div class="flex items-center ">
+        <div class="flex items-center">
           <FormulateInput
             type="select"
             name="gruppe"
@@ -12,7 +12,17 @@
             v-model="materialData.kategorie.gruppe"
           />
           <button
-            class="bg-retro-mediumpurple hover:bg-retro-black text-white font-bold py-2 px-4 border-b-4 border-retro-Deeppurple hover:border-black rounded"
+            class="
+              bg-retro-mediumpurple
+              hover:bg-retro-black
+              text-white
+              font-bold
+              py-2
+              px-4
+              border-b-4 border-retro-Deeppurple
+              hover:border-black
+              rounded
+            "
           >
             +
           </button>
@@ -24,7 +34,17 @@
             v-model="materialData.kategorie.unterGruppe"
           />
           <button
-            class="bg-retro-mediumpurple hover:bg-retro-black text-white font-bold py-2 px-4 border-b-4 border-retro-Deeppurple hover:border-black rounded"
+            class="
+              bg-retro-mediumpurple
+              hover:bg-retro-black
+              text-white
+              font-bold
+              py-2
+              px-4
+              border-b-4 border-retro-Deeppurple
+              hover:border-black
+              rounded
+            "
           >
             +
           </button>
@@ -36,7 +56,17 @@
             v-model="materialData.kategorie.art"
           />
           <button
-            class="bg-retro-mediumpurple hover:bg-retro-black text-white font-bold py-2 px-4 border-b-4 border-retro-Deeppurple hover:border-black rounded"
+            class="
+              bg-retro-mediumpurple
+              hover:bg-retro-black
+              text-white
+              font-bold
+              py-2
+              px-4
+              border-b-4 border-retro-Deeppurple
+              hover:border-black
+              rounded
+            "
           >
             +
           </button>
@@ -51,39 +81,38 @@
 <script>
 export default {
   name: 'Categories',
-  props: ['categoryData'],
+  props: ['categoryData', 'selectedCategories'],
   data() {
     return {
       materialData: {
-        kategorie: { gruppe: '', unterGruppe: '', art: '' }
-      }
+        kategorie: { gruppe: '', unterGruppe: '', art: '', ...this.selectedCategories },
+      },
     }
   },
 
   computed: {
     kategorie() {
       const kat = {
-        gruppe: this.categoryData.map(g => {
+        gruppe: this.categoryData.map((g) => {
           return {
             label: g.label,
-            value: g.value
+            value: g.value,
           }
         }),
         unterGruppe: this.materialData.kategorie.gruppe
-          ? this.categoryData.find(x => x.value === this.materialData.kategorie.gruppe)?.untergruppe
+          ? this.categoryData.find((x) => x.value === this.materialData.kategorie.gruppe)?.untergruppe
           : '',
 
         art: this.materialData.kategorie.unterGruppe
           ? this.categoryData
-              .find(x => x.value === this.materialData.kategorie.gruppe)
-              .untergruppe.find(x => x.value === this.materialData.kategorie.unterGruppe)?.art
-          : ''
+              .find((x) => x.value === this.materialData.kategorie.gruppe)
+              .untergruppe.find((x) => x.value === this.materialData.kategorie.unterGruppe)?.art
+          : '',
       }
 
-      console.log('hnorray', kat.unterGruppe.length)
       this.$emit('changeCategories', this.materialData.kategorie)
       return kat
-    }
-  }
+    },
+  },
 }
 </script>
