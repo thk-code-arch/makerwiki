@@ -117,7 +117,14 @@ export default {
   purgeCSS: {
     mode: 'postcss',
     whitelist: ['dark-mode', 'light-mode', 'btn', 'icon', 'main','inline-grid'],
-    whitelistPatterns: [/^article/, /image$/]
+    whitelistPatterns: [/^article/, /image$/],
+      paths: [
+    'components/**/*.vue',
+    'layouts/**/*.vue',
+    'pages/**/*.vue',
+    'plugins/**/*.js',
+    'formulate.config.js'
+  ],
   },
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
