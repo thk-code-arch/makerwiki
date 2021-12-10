@@ -30,11 +30,6 @@ export default {
   head() {
     return {}
   },
-  async asyncdata({ $axios }) {
-    const resp = await $axios.$get('api/profile')
-    console.log(resp.data)
-    return { resp }
-  },
   data() {
     return {
       currentTab: 'profile',
