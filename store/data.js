@@ -1,4 +1,5 @@
 export const state = () => ({
+  users:[],
   materials: [],
   processes: [],
   categories: []
@@ -14,6 +15,9 @@ export const getters = {
   },
   getCategoryById: (state) => (id) => {
     return state.categories.find(cat => cat._id === id)
+  },
+  getUserById: (state) => (id) => {
+    return state.users.find(usr => usr.id === id)
   },
   sortedCategories: (state) => {
     const all = state.categories
@@ -48,6 +52,9 @@ export const getters = {
 
 }
 export const mutations = {
+  SET_USERS(state, users) {
+    state.users = users
+  },
   SET_MATERIALS(state, materials) {
     state.materials = materials
   },
@@ -59,6 +66,11 @@ export const mutations = {
   }
 }
 export const actions = {
+  getUsers({ commit }) {
+    this.$axios.$get('api/users').then(response => {
+      commit('SET_USERS', response)
+    })
+  },
   getMaterials({ commit }) {
     this.$axios.$get('api/materials').then(response => {
       commit('SET_MATERIALS', response)

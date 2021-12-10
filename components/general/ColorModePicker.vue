@@ -5,6 +5,9 @@
       <nuxt-link to="/backend">
         <Settings class="icon p-2" />
       </nuxt-link>
+      <nuxt-link to="/imprint">
+        <Imprint class="icon p-2" />
+      </nuxt-link>
       <Logout @click="logOut" v-if="isLoggedin" class="icon p-2" />
     </div>
   </div>
@@ -17,6 +20,7 @@ import IconLight from '~/components/icons/light.svg?inline'
 import IconDark from '~/components/icons/dark.svg?inline'
 import Settings from '~/components/icons/settings.svg?inline'
 import Logout from '~/components/icons/logout.svg?inline'
+import Imprint from '~/components/icons/info.svg?inline'
 
 export default {
   name: 'ColorModePicker',
@@ -26,6 +30,7 @@ export default {
     IconDark,
     Settings,
     Logout,
+    Imprint,
   },
   data() {
     return {

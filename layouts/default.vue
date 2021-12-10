@@ -24,6 +24,7 @@ export default {
       this.$store.dispatch('data/getMaterials')
       this.$store.dispatch('data/getCategories')
       this.$store.dispatch('data/getProcesses')
+      this.$store.dispatch('data/getUsers')
     }
   },
 }

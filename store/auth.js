@@ -1,7 +1,10 @@
 // Copyright (c) 2021 Steffen Stein <mail@steffenstein.com> For LICENSE see docs/LICENSE
 
+
 export const state = () => ({
-  loggedIn: false
+  loggedIn: false,
+  username: '',
+  userId:''
 })
 
 export const mutations = {
@@ -19,6 +22,10 @@ export const mutations = {
   },
   registerFailure(state) {
     state.loggedIn = false
+  },
+  setUsername(state,resp) {
+    state.username = resp.username
+    state.userId = resp.userId
   }
 }
 export const actions = {
@@ -46,6 +53,11 @@ export const actions = {
   },
   updateProfile({ commit }, updateUser) {
     commit('updatedProfile', updateUser)
+  },
+  getProfile({ commit }) {
+    this.$axios.$get('api/profile').then(response => {
+      commit('setUsername', response)
+    })
   },
   register({ commit }, user) {
     return this.$axios

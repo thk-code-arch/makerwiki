@@ -73,9 +73,6 @@
         </div>
       </FormulateInput>
     </div>
-    <div>
-      {{ materialData.kategorie }}
-    </div>
   </div>
 </template>
 <script>
