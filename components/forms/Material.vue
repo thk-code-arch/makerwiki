@@ -93,27 +93,27 @@
           v-model.lazy="materialData.festigkeit.sproedigkeit"
         />
       </FormulateInput>
-      <FormulateInput type="group" name="differentiellesSchwindmaß " :repeatable="false">
-        <h2 class="subtitle">Differentielles Schwindmaß</h2>
+      <FormulateInput type="group" name="differentiellesSchwindmass " :repeatable="false">
+        <h2 class="subtitle">Differentielles Schwindmass</h2>
         <FormulateInput type="group" name="tangential" :repeatable="false">
           <FormulateInput
             type="number"
             name="min"
             label="min Tangential"
-            v-model.lazy="materialData.differentiellesSchwindmaß.tangential.min"
+            v-model.lazy="materialData.differentiellesSchwindmass.tangential.min"
           />
           <FormulateInput
             type="number"
             name="max"
             label="max Tangential"
-            v-model.lazy="materialData.differentiellesSchwindmaß.tangential.max"
+            v-model.lazy="materialData.differentiellesSchwindmass.tangential.max"
           />
           <FormulateInput
             type="select"
             name="tangentialEinheit"
             label="Einheit"
             :options="einheiten"
-            v-model.lazy="materialData.differentiellesSchwindmaß.tangential.einheit"
+            v-model.lazy="materialData.differentiellesSchwindmass.tangential.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="radial" :repeatable="false">
@@ -121,20 +121,20 @@
             type="number"
             name="min"
             label="min Radial"
-            v-model.lazy="materialData.differentiellesSchwindmaß.radial.min"
+            v-model.lazy="materialData.differentiellesSchwindmass.radial.min"
           />
           <FormulateInput
             type="number"
             name="max"
             label="max Radial"
-            v-model.lazy="materialData.differentiellesSchwindmaß.radial.max"
+            v-model.lazy="materialData.differentiellesSchwindmass.radial.max"
           />
           <FormulateInput
             type="select"
             name="radialEinheit"
             label="Einheit"
             :options="einheiten"
-            v-model.lazy="materialData.differentiellesSchwindmaß.radial.einheit"
+            v-model.lazy="materialData.differentiellesSchwindmass.radial.einheit"
           />
         </FormulateInput>
         <FormulateInput type="group" name="physikalischeEigenschaften " :repeatable="false">
@@ -179,11 +179,11 @@
           />
           <FormulateInput
             type="radio"
-            name="abriebVerschleiß"
-            label="Abrieb/Verschleiß"
+            name="abriebVerschleiss"
+            label="Abrieb/Verschleiss"
             :repeatable="false"
             :options="{ g: 'Gering', mi: 'Mittel', vi: 'Viel' }"
-            v-model.lazy="materialData.oberflaeche.abriebVerschleiß"
+            v-model.lazy="materialData.oberflaeche.abriebVerschleiss"
           />
         </FormulateInput>
         <FormulateInput type="group" name="oekonomie" :repeatable="false">
@@ -260,7 +260,7 @@ export default {
       console.log('updated')
       await this.$axios.$post('api/materials/update', {
         id: this.existingmaterialData?.id,
-        materialData: JSON.stringify(this.materialData),
+        materialData: this.materialData,
       })
       this.$router.push({ path: '/material' })
     },
@@ -323,7 +323,7 @@ export default {
           nachgiebigkeit: '',
           sproedigkeit: '',
         },
-        differentiellesSchwindmaß: {
+        differentiellesSchwindmass: {
           tangential: { min: '', max: '', einheit: '' },
           radial: { min: '', max: '', einheit: '' },
         },
@@ -336,7 +336,7 @@ export default {
         },
         oberflaeche: {
           korrosionOxidation: '',
-          abriebVerschleiß: '',
+          abriebVerschleiss: '',
         },
         oekonomie: {
           verfuegbarkeittransport: '',

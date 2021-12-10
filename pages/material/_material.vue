@@ -17,7 +17,7 @@ export default {
   mounted() {},
   computed: {
     materialPost() {
-      return this.$store.getters['data/getMaterialById'](this.$route.params.material)
+      return { ...this.$store.getters['data/getMaterialById'](this.$route.params.material) }
     },
   },
   methods: {

@@ -7,7 +7,10 @@ export const state = () => ({
 export const getters = {
 
   getMaterialById: (state) => (id) => {
-    return state.materials.find(material => material.id === id)
+    return JSON.parse(JSON.stringify(state.materials.find(material => material.id === id)))
+  },
+  getProcessById: (state) => (id) => {
+    return JSON.parse(JSON.stringify(state.processes.find(process => process.id === id)))
   },
   getCategoryById: (state) => (id) => {
     return state.categories.find(cat => cat._id === id)
