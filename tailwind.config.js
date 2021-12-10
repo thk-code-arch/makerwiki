@@ -87,7 +87,7 @@ module.exports = {
   plugins: [require('tailwindcss-dark-mode')()],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
-    enabled: process.env.NODE_ENV === 'production',
+    enabled: process.env.NODE_ENV === 'noprod',
     content: ['components/**/*.vue', 'layouts/**/*.vue', 'pages/**/*.vue', 'plugins/**/*.js', '*.config.js'],
     options: {
       // Set whitelist in nuxt.config.js -> purgeCSS.whitelist: ['dark-mode', 'light-mode', 'btn', 'icon']
