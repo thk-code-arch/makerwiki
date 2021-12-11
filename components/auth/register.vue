@@ -1,31 +1,19 @@
 <!-- // Copyright (c) 2021 Steffen Stein <mail@steffenstein.com> For LICENSE see docs/LICENSE -->
 
 <template>
-  <div class="flex flex-col px-8 pt-6 pb-8 mb-4 ">
+  <div class="flex flex-col px-8 pt-6 pb-8 mb-4">
     <p class="text-codearch-500">{{ useraction }}</p>
     <FormulateForm v-if="!login" @submit="handleRegister">
+      <FormulateInput type="text" name="username" v-model="user.username" label="Username" validation="required" />
+      <FormulateInput type="text" name="email" v-model="user.email" label="Email" validation="required" />
       <FormulateInput
-        type="text"
-        name="username"
-        v-model="user.username"
-        label="Username"
-        validation="required"
-      />
-      <FormulateInput
-        type="text"
-        name="email"
-        v-model="user.email"
-        label="Email"
-        validation="required"
-      />
-      <FormulateInput
-  type="password"
-  name="password"
-  label="Password"
+        type="password"
+        name="password"
+        label="Password"
         v-model="user.password"
-  validation="required|min:4,length"
-  validation-name="Password"
-/>
+        validation="required|min:4,length"
+        validation-name="Password"
+      />
       <FormulateInput
         type="text"
         name="invitecode"
@@ -40,39 +28,36 @@
 </template>
 
 <script>
-import User from "@/models/user";
+import User from '@/models/user'
 
 export default {
-  name: "Register",
+  name: 'Register',
   data() {
     return {
-      user: new User("", "", ""),
+      user: new User('', '', '', ''),
       loading: false,
-      message: "",
-      useraction: "",
+      message: '',
+      useraction: '',
       login: false,
-    };
+    }
   },
   methods: {
     handleRegister() {
-      this.message = "";
-      this.submitted = true;
-      this.$store.dispatch("auth/register", this.user).then(
+      this.message = ''
+      this.submitted = true
+      this.$store.dispatch('auth/register', this.user).then(
         (data) => {
-          this.message = data.message;
-          this.successful = true;
-          this.login = true;
-          this.useraction = "Registered. Login now!";
+          this.message = data.message
+          this.successful = true
+          this.login = true
+          this.useraction = 'Registered. Login now!'
         },
         (error) => {
-          this.message =
-            (error.response && error.response.data) ||
-            error.message ||
-            error.toString();
-          this.successful = false;
+          this.message = (error.response && error.response.data) || error.message || error.toString()
+          this.successful = false
         }
-      );
+      )
     },
   },
-};
+}
 </script>

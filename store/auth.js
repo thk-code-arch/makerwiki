@@ -38,6 +38,7 @@ export const actions = {
       .then(response => {
         localStorage.setItem('user', JSON.stringify(response))
         commit('loginSuccess')
+      commit('setUsername', response)
       })
       .catch(error => {
         console.log(error)
