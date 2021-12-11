@@ -10,5 +10,8 @@ export default {
       return this.$store.state.auth.username
     },
   },
+  mounted() {
+    this.$store.dispatch('auth/getProfile')
+  },
 }
 </script>
