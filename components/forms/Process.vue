@@ -33,13 +33,39 @@ export default {
       }
       return 1
     },
+    materialList() {
+      return this.$store.getters['data/sortedCategories']
+    },
   },
   data() {
     return {
       processData: {
+        materialId: '',
         versuch: [],
       },
     }
+  },
+  methods: {
+    async createProcess() {
+      console.log('created')
+      await this.$axios.$post('api/processes', { processData: this.processData })
+      this.$router.push({ path: 'process' })
+    },
+    async updateProcess() {
+      console.log('updated')
+      await this.$axios.$post('api/processes/update', {
+        id: this.existingprocessData?.id,
+        processData: this.processData,
+      })
+      this.$router.push({ path: 'process' })
+    },
+    async deleteProcess() {
+      if (confirm('Do you really want to delete?')) {
+        console.log('deleted')
+        await this.$axios.$post('api/processes/delete', { id: this.existingprocessData?.id })
+        this.$router.push({ path: 'process' })
+      }
+    },
   },
 }
 </script>

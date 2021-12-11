@@ -1,9 +1,14 @@
 <template>
-  <div class="title">Hi {{ resp.data.username }}!</div>
+  <div class="title">Hi {{ username }}!</div>
 </template>
 
 <script>
 export default {
   name: 'profile',
+  computed: {
+    username() {
+      return this.$store.state.auth.username
+    },
+  },
 }
 </script>

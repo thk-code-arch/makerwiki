@@ -1,55 +1,63 @@
 export const state = () => ({
-  users:[],
+  users: [],
   materials: [],
   processes: [],
   categories: []
 })
 
 export const getters = {
-
-  getMaterialById: (state) => (id) => {
+  getMaterialById: state => id => {
     return JSON.parse(JSON.stringify(state.materials.find(material => material.id === id)))
   },
-  getProcessById: (state) => (id) => {
+  getMaterialCreatedByUserId: state => id => {
+    return state.materials.find(material => material.createdBy === id)
+  },
+  getMaterialNameList: state => {
+    return state.materials.map(m => {
+      return {
+        materialName: m.materialData.ueberschrift,
+        materialId: m.id
+      }
+    })
+  },
+  getProcessById: state => id => {
     return JSON.parse(JSON.stringify(state.processes.find(process => process.id === id)))
   },
-  getCategoryById: (state) => (id) => {
+  getCategoryById: state => id => {
     return state.categories.find(cat => cat._id === id)
   },
-  getUserById: (state) => (id) => {
+  getUserById: state => id => {
     return state.users.find(usr => usr.id === id)
   },
-  sortedCategories: (state) => {
+  sortedCategories: state => {
     const all = state.categories
-    const gruppe = all.filter((p) => p.ebene === 'gruppe');
-    const untergruppe = all.filter((p) => p.ebene === 'untergruppe');
-    const art = all.filter((p) => p.ebene === 'art');
+    const gruppe = all.filter(p => p.ebene === 'gruppe')
+    const untergruppe = all.filter(p => p.ebene === 'untergruppe')
+    const art = all.filter(p => p.ebene === 'art')
 
-    return gruppe.map((g) => {
+    return gruppe.map(g => {
       return {
         value: g._id,
         label: g.name,
         untergruppe: untergruppe
-          .filter((ug) => ug.parent === g.name)
-          .map((ug) => {
+          .filter(ug => ug.parent === g.name)
+          .map(ug => {
             return {
               value: ug._id,
               label: ug.name,
               art: art
-                .filter((art) => art.parent === ug.name)
-                .map((art) => {
+                .filter(art => art.parent === ug.name)
+                .map(art => {
                   return {
                     value: art._id,
-                    label: art.name,
-                  };
-                }),
-            };
-          }),
-      };
-    });
+                    label: art.name
+                  }
+                })
+            }
+          })
+      }
+    })
   }
-
-
 }
 export const mutations = {
   SET_USERS(state, users) {
