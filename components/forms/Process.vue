@@ -4,27 +4,51 @@
     <h2 class="subtitle">Process Formular</h2>
 
     <FormulateForm v-model="processData">
+      <FormulateInput
+        type="select"
+        name="Material"
+        label="Material select"
+        :options="materialList"
+        v-model="processData.materialId"
+        :disabled="!isLoggedin"
+        validation="required"
+      />
       <FormulateInput type="group" name="versuch" :repeatable="true">
         <h2 class="subtitle">Versuch {{ versuchAnzahl }}</h2>
         <h2 class="subtitle">Raster</h2>
 
-        <FormulateInput type="number" name="raster.power" label="Power" placeholder="In %" />
-        <FormulateInput type="number" name="raster.frequenz" label="Frequenz" placeholder="In %" />
-        <FormulateInput type="number" name="raster.speed" label="Speed" placeholder="In %" />
+        <FormulateInput type="number" :disabled="!isLoggedin" name="rasterPower" label="Power" placeholder="In %" />
+        <FormulateInput
+          type="number"
+          :disabled="!isLoggedin"
+          name="rasterFrequenz"
+          label="Frequenz"
+          placeholder="In %"
+        />
+        <FormulateInput type="number" :disabled="!isLoggedin" name="rasterSpeed" label="Speed" placeholder="In %" />
 
         <h2 class="subtitle">Schnitt</h2>
-        <FormulateInput type="number" name="schnitt.power" label="Power" placeholder="In %" />
-        <FormulateInput type="number" name="schnitt.frequenz" label="Frequenz" placeholder="In %" />
-        <FormulateInput type="number" name="schnitt.speed" label="Speed" placeholder="In %" />
+        <FormulateInput type="number" :disabled="!isLoggedin" name="schnittPower" label="Power" placeholder="In %" />
+        <FormulateInput
+          type="number"
+          :disabled="!isLoggedin"
+          name="schnittFrequenz"
+          label="Frequenz"
+          placeholder="In %"
+        />
+        <FormulateInput type="number" :disabled="!isLoggedin" name="schnittSpeed" label="Speed" placeholder="In %" />
       </FormulateInput>
 
-      <FormulateInput type="button" label="Save" class="main text-center flex flex-col flow-root" />
+      <FormulateInput v-if="isNew" type="button" label="Save" @click="createProcess()" />
+      <FormulateInput v-if="!isNew && isLoggedin" type="button" label="Update" @click="updateProcess()" />
+      <FormulateInput v-if="!isNew && isLoggedin" type="button" label="Delete" @click="deleteProcess()" />
     </FormulateForm>
     <div></div>
   </div>
 </template>
 <script>
 export default {
+  props: ['existingprocessData'],
   computed: {
     versuchAnzahl() {
       if (this.processData.versuch) {
@@ -34,7 +58,13 @@ export default {
       return 1
     },
     materialList() {
-      return this.$store.getters['data/sortedCategories']
+      return this.$store.getters['data/getMaterialNameList']
+    },
+    isLoggedin() {
+      return this.$store.state.auth.loggedIn
+    },
+    isNew() {
+      return this.existingprocessData?.id ? false : true
     },
   },
   data() {
@@ -42,6 +72,7 @@ export default {
       processData: {
         materialId: '',
         versuch: [],
+        ...this.existingprocessData?.processData,
       },
     }
   },

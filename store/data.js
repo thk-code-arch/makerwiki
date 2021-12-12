@@ -27,13 +27,16 @@ export const getters = {
   getMaterialNameList: state => {
     return state.materials.map(m => {
       return {
-        materialName: m.materialData.ueberschrift,
-        materialId: m.id
+        label: m.materialData.ueberschrift,
+        value: m.id
       }
     })
   },
   getProcessById: state => id => {
     return JSON.parse(JSON.stringify(state.processes.find(process => process.id === id)))
+  },
+  getProcessCreatedByUserId: state => id => {
+    return state.processes.find(ps => ps.createdBy === id)
   },
   getCategoryById: state => id => {
     return state.categories.find(cat => cat._id === id)

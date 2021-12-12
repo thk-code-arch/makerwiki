@@ -21,6 +21,7 @@
         name="ueberschrift"
         label="Überschrift"
         :disabled="!isLoggedin"
+        validation="required"
         v-model.lazy="materialData.ueberschrift"
       />
       <Categories
@@ -368,12 +369,6 @@ export default {
     isNew() {
       return this.existingmaterialData?.id ? false : true
     },
-  },
-  mounted() {
-    if (this.exddistingmaterialData?.id) {
-      console.log(JSON.stringify(this.existingmaterialData.materialData))
-      this.materialData = { ...this.materialData, ...this.existingmaterialData.materialData }
-    }
   },
 
   data() {
