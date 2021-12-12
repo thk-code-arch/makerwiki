@@ -1,3 +1,4 @@
+
 export const state = () => ({
   users: [],
   materials: [],
@@ -11,6 +12,17 @@ export const getters = {
   },
   getMaterialCreatedByUserId: state => id => {
     return state.materials.find(material => material.createdBy === id)
+  },
+  getUsersAndData: state => {
+    return state.users.map(usr=>{
+      return {
+        userId: usr.id,
+        username: usr.username,
+        materials: state.materials.filter(m => m.createdBy== usr.id),
+        processes: state.processes.filter(m => m.createdBy === usr.id),
+        count: state.materials.filter(m => m.createdBy === usr.id).length + state.processes.filter(m => m.createdBy === usr.id).length,
+      }
+    })
   },
   getMaterialNameList: state => {
     return state.materials.map(m => {
