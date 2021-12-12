@@ -2,8 +2,7 @@
 
 <template>
   <div class="flex flex-col px-8 pt-6 pb-8 mb-4">
-    <p class="text-codearch-500">{{ useraction }}</p>
-    <FormulateForm v-if="!login" @submit="handleRegister">
+    <FormulateForm @submit="handleRegister">
       <FormulateInput type="text" name="username" v-model="user.username" label="Username" validation="required" />
       <FormulateInput type="text" name="email" v-model="user.email" label="Email" validation="required" />
       <FormulateInput
@@ -37,8 +36,6 @@ export default {
       user: new User('', '', '', ''),
       loading: false,
       message: '',
-      useraction: '',
-      login: false,
     }
   },
   methods: {
@@ -47,14 +44,14 @@ export default {
       this.submitted = true
       this.$store.dispatch('auth/register', this.user).then(
         (data) => {
-          this.message = data.message
+          this.loading = false
           this.successful = true
-          this.login = true
-          this.useraction = 'Registered. Login now!'
+          this.$router.push('/login')
+          window.location.reload(true)
         },
         (error) => {
-          this.message = (error.response && error.response.data) || error.message || error.toString()
-          this.successful = false
+          this.loading = false
+          this.message = 'Login failed ' + error.toString()
         }
       )
     },

@@ -1,6 +1,8 @@
 <template>
   <article v-if="processPost" class="main article">
-    <h3 class="article-title">{{ materialName(processPost.processData.materialId) }}</h3>
+    <nuxt-link :to="`/material/${processPost.processData.materialId}`" class="article-title">{{
+      materialName(processPost.processData.materialId)
+    }}</nuxt-link>
     <h3 class="">created at: {{ processPost.createdAt }}</h3>
     <h3 class="">created by: {{ username(processPost.createdBy) }}</h3>
     <process :existingprocessData="processPost" />

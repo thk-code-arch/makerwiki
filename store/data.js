@@ -11,7 +11,8 @@ export const getters = {
     return JSON.parse(JSON.stringify(state.materials.find(material => material.id === id)))
   },
   getMaterialCreatedByUserId: state => id => {
-    return state.materials.find(material => material.createdBy === id)
+    return state.materials.filter(material => material.createdBy === id)
+
   },
   getUsersAndData: state => {
     return state.users.map(usr=>{
@@ -36,7 +37,10 @@ export const getters = {
     return JSON.parse(JSON.stringify(state.processes.find(process => process.id === id)))
   },
   getProcessCreatedByUserId: state => id => {
-    return state.processes.find(ps => ps.createdBy === id)
+    return state.processes.filter(ps => ps.createdBy === id)
+  },
+  getProcessByMaterialId: state => id => {
+    return state.processes.filter(ps => ps.processData.materialId === id)
   },
   getCategoryById: state => id => {
     return state.categories.find(cat => cat._id === id)

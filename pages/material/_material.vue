@@ -6,6 +6,15 @@
       {{ categoryName(materialPost.materialData.kategorie.unterGruppe) }} -
       {{ categoryName(materialPost.materialData.kategorie.art) }}
     </h1>
+
+    <div v-if="latestProcesses" class="m-6">
+      <span class="uppercase font-bold">process</span>
+      <li v-for="(p, index) in latestProcesses" :key="index" class="m-2">
+        <nuxt-link :to="`/process/${p.id}`">
+          {{ p.createdAt }}
+        </nuxt-link>
+      </li>
+    </div>
     <img class="cover-image" :src="'/api' + materialPost.materialData.bilder" />
     <material :existingmaterialData="materialPost" />
   </article>
@@ -18,6 +27,9 @@ export default {
   computed: {
     materialPost() {
       return { ...this.$store.getters['data/getMaterialById'](this.$route.params.material) }
+    },
+    latestProcesses() {
+      return this.$store.getters['data/getProcessByMaterialId'](this.$route.params.material)
     },
   },
   methods: {
