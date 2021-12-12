@@ -23,6 +23,7 @@
               hover:border-black
               rounded
             "
+            @click="newCategory('gruppe')"
           >
             +
           </button>
@@ -34,6 +35,7 @@
             v-model="materialData.kategorie.unterGruppe"
           />
           <button
+            v-if="materialData.kategorie.gruppe"
             class="
               bg-retro-mediumpurple
               hover:bg-retro-black
@@ -45,6 +47,7 @@
               hover:border-black
               rounded
             "
+            @click="newCategory('untergruppe')"
           >
             +
           </button>
@@ -56,6 +59,7 @@
             v-model="materialData.kategorie.art"
           />
           <button
+            v-if="materialData.kategorie.unterGruppe"
             class="
               bg-retro-mediumpurple
               hover:bg-retro-black
@@ -67,24 +71,51 @@
               hover:border-black
               rounded
             "
+            @click="newCategory('art')"
           >
             +
           </button>
         </div>
       </FormulateInput>
     </div>
+    <AddCategory v-if="showAddCat" @addedCat="addedCat()" :ebene="ebene" :parent="parent" />
   </div>
 </template>
 <script>
+import AddCategory from '~/components/forms/AddCategory'
 export default {
   name: 'Categories',
   props: ['categoryData', 'selectedCategories'],
+  components: { AddCategory },
   data() {
     return {
       materialData: {
         kategorie: { gruppe: '', unterGruppe: '', art: '', ...this.selectedCategories },
       },
+      showAddCat: false,
+      ebene: '',
     }
+  },
+  methods: {
+    newCategory(ebene) {
+      this.showAddCat = !this.showAddCat
+      this.ebene = ebene
+      if (ebene === 'gruppe') {
+        this.parent = ''
+      }
+      if (ebene === 'untergruppe') {
+        this.parent = this.categoryName(this.materialData.kategorie.gruppe)
+      }
+      if (ebene === 'art') {
+        this.parent = this.categoryName(this.materialData.kategorie.unterGruppe)
+      }
+    },
+    categoryName(id) {
+      return this.$store.getters['data/getCategoryById'](id)?.name
+    },
+    addedCat() {
+      this.showAddCat = !this.showAddCat
+    },
   },
 
   computed: {

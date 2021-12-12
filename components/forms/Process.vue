@@ -80,7 +80,7 @@ export default {
     async createProcess() {
       console.log('created')
       await this.$axios.$post('api/processes', { processData: this.processData })
-      this.$router.push({ path: 'process' })
+      this.$router.push({ path: '/process' })
     },
     async updateProcess() {
       console.log('updated')
@@ -88,13 +88,13 @@ export default {
         id: this.existingprocessData?.id,
         processData: this.processData,
       })
-      this.$router.push({ path: 'process' })
+      this.$router.push({ path: '/process' })
     },
     async deleteProcess() {
       if (confirm('Do you really want to delete?')) {
         console.log('deleted')
         await this.$axios.$post('api/processes/delete', { id: this.existingprocessData?.id })
-        this.$router.push({ path: 'process' })
+        this.$router.push({ path: '/process' })
       }
     },
   },
