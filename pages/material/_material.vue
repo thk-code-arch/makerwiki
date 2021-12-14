@@ -11,6 +11,8 @@
       <span class="uppercase font-bold">process</span>
       <li v-for="(p, index) in latestProcesses" :key="index" class="m-2">
         <nuxt-link :to="`/process/${p.id}`">
+          {{ categoryName(p.processData.kategorie.gruppe) }} - {{ categoryName(p.processData.kategorie.unterGruppe) }} -
+          {{ categoryName(p.processData.kategorie.art) }}
           {{ p.createdAt }}
         </nuxt-link>
       </li>
