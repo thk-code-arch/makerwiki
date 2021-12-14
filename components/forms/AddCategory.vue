@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'AddCategory',
-  props: ['ebene', 'parent'],
+  props: ['ebene', 'parent', 'categoryType'],
   data() {
     return {
       name: '',
@@ -24,6 +24,7 @@ export default {
         ebene: this.ebene,
         parent: this.parent,
         name: this.name,
+        categoryType: this.categoryType,
       })
 
       this.$emit('addedCat')

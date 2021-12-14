@@ -48,8 +48,8 @@ export const getters = {
   getUserById: state => id => {
     return state.users.find(usr => usr.id === id)
   },
-  sortedCategories: state => {
-    const all = state.categories
+  sortedCategories: state => categoryType => {
+    const all = state.categories.filter(p => p.categoryType === categoryType)
     const gruppe = all.filter(p => p.ebene === 'gruppe')
     const untergruppe = all.filter(p => p.ebene === 'untergruppe')
     const art = all.filter(p => p.ebene === 'art')

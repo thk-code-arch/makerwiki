@@ -78,14 +78,20 @@
         </div>
       </FormulateInput>
     </div>
-    <AddCategory v-if="showAddCat" @addedCat="addedCat()" :ebene="ebene" :parent="parent" />
+    <AddCategory
+      v-if="showAddCat"
+      @addedCat="addedCat()"
+      :ebene="ebene"
+      :parent="parent"
+      :categoryType="categoryType"
+    />
   </div>
 </template>
 <script>
 import AddCategory from '~/components/forms/AddCategory'
 export default {
   name: 'Categories',
-  props: ['categoryData', 'selectedCategories'],
+  props: ['categoryData', 'selectedCategories', 'categoryType'],
   components: { AddCategory },
   data() {
     return {
@@ -139,6 +145,7 @@ export default {
       }
 
       this.$emit('changeCategories', this.materialData.kategorie)
+      console.log('emit', this.materialData.kategorie)
       return kat
     },
   },

@@ -28,6 +28,7 @@
         v-if="isLoggedin"
         :categoryData="categoryData"
         :selectedCategories="materialData.kategorie"
+        categoryType="material"
         @changeCategories="ChangeC($event)"
       />
       <MechProperties
@@ -361,7 +362,7 @@ export default {
   },
   computed: {
     categoryData() {
-      return this.$store.getters['data/sortedCategories']
+      return this.$store.getters['data/sortedCategories']('material')
     },
     isLoggedin() {
       return this.$store.state.auth.loggedIn
