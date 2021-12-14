@@ -41,6 +41,7 @@
         <FormulateInput type="group" name="druck" :repeatable="false">
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.festigkeit.druck.min)"
             name="min"
             label="min Druck"
             :disabled="!isLoggedin"
@@ -48,6 +49,7 @@
           />
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.festigkeit.druck.max)"
             name="max"
             label="max Druck"
             :disabled="!isLoggedin"
@@ -55,6 +57,7 @@
           />
           <FormulateInput
             type="select"
+            v-if="showForm(materialData.festigkeit.druck.einheit)"
             name="druckEinheit"
             label="Einheit"
             :options="einheiten"
@@ -65,6 +68,7 @@
         <FormulateInput type="group" name="zug" :repeatable="false">
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.festigkeit.zug.min)"
             name="min"
             label="min Zug"
             :disabled="!isLoggedin"
@@ -72,6 +76,7 @@
           />
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.festigkeit.zug.max)"
             name="max"
             label="max Zug"
             :disabled="!isLoggedin"
@@ -79,6 +84,7 @@
           />
           <FormulateInput
             type="select"
+            v-if="showForm(materialData.festigkeit.zug.einheit)"
             name="zugEinheit"
             label="Einheit"
             :options="einheiten"
@@ -89,6 +95,7 @@
         <FormulateInput type="group" name="biege" :repeatable="false">
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.festigkeit.biege.min)"
             name="min"
             label="min Biege"
             :disabled="!isLoggedin"
@@ -96,6 +103,7 @@
           />
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.festigkeit.biege.max)"
             name="max"
             label="max Biege"
             :disabled="!isLoggedin"
@@ -103,6 +111,7 @@
           />
           <FormulateInput
             type="select"
+            v-if="showForm(materialData.festigkeit.biege.einheit)"
             name="biegEinheit"
             label="Einheit"
             :options="einheiten"
@@ -113,6 +122,7 @@
         <FormulateInput type="group" name="brienellehaerte" :repeatable="false">
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.festigkeit.brienellehaerte.min)"
             name="min"
             label="min Brienellehärte"
             :disabled="!isLoggedin"
@@ -120,6 +130,7 @@
           />
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.festigkeit.brienellehaerte.max)"
             name="max"
             label="max Brienellehärte"
             :disabled="!isLoggedin"
@@ -127,6 +138,7 @@
           />
           <FormulateInput
             type="select"
+            v-if="showForm(materialData.festigkeit.brienellehaerte.einheit)"
             name="brienellehaerteEinheit"
             label="Einheit"
             :options="einheiten"
@@ -136,6 +148,7 @@
         </FormulateInput>
         <FormulateInput
           type="text"
+          v-if="showForm(materialData.festigkeit.nachgiebigkeit)"
           name="nachgiebigkeit"
           label="Nachgiebigkeit (Duktilität)"
           :disabled="!isLoggedin"
@@ -143,6 +156,7 @@
         />
         <FormulateInput
           type="text"
+          v-if="showForm(materialData.festigkeit.sproedigkeit)"
           name="sproedigkeit"
           label="Sprödigkeit"
           :disabled="!isLoggedin"
@@ -154,6 +168,7 @@
         <FormulateInput type="group" name="tangential" :repeatable="false">
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.differentiellesSchwindmass.tangential.min)"
             name="min"
             label="min Tangential"
             :disabled="!isLoggedin"
@@ -161,6 +176,7 @@
           />
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.differentiellesSchwindmass.tangential.max)"
             name="max"
             label="max Tangential"
             :disabled="!isLoggedin"
@@ -168,6 +184,7 @@
           />
           <FormulateInput
             type="select"
+            v-if="showForm(materialData.differentiellesSchwindmass.tangential.einheit)"
             name="tangentialEinheit"
             label="Einheit"
             :options="einheiten"
@@ -358,6 +375,15 @@ export default {
       const res = await this.$axios.$post('api/upload_image', formData)
       console.log(res)
       this.materialData.bilder = res.filepath
+    },
+    showForm(vModel) {
+      if (this.$store.state.auth.loggedIn) {
+        return true
+      }
+      if (vModel) {
+        return true
+      }
+      return false
     },
   },
   computed: {
