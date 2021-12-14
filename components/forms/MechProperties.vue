@@ -5,6 +5,7 @@
       <FormulateInput type="group" name="dichte" :repeatable="false">
         <FormulateInput
           type="number"
+          v-if="showForm(materialData.mechanischeEigenschaften.dichte.min)"
           name="min"
           label="min Dichte"
           :disabled="!isLoggedin"
@@ -12,6 +13,7 @@
         />
         <FormulateInput
           type="number"
+          v-if="showForm(materialData.mechanischeEigenschaften.dichte.max)"
           name="max"
           label="max Dichte"
           :disabled="!isLoggedin"
@@ -19,6 +21,7 @@
         />
         <FormulateInput
           type="select"
+          v-if="showForm(materialData.mechanischeEigenschaften.dichte.einheit)"
           name="dichteEinheit"
           label="Einheit"
           :options="einheiten"
@@ -29,6 +32,7 @@
       <FormulateInput type="group" name="elastizitaet" :repeatable="false">
         <FormulateInput
           type="number"
+          v-if="showForm(materialData.mechanischeEigenschaften.elastizitaet.min)"
           name="min"
           label="min Elastizität"
           :disabled="!isLoggedin"
@@ -36,6 +40,7 @@
         />
         <FormulateInput
           type="number"
+          v-if="showForm(materialData.mechanischeEigenschaften.elastizitaet.max)"
           name="max"
           label="max Elastizität"
           :disabled="!isLoggedin"
@@ -43,6 +48,7 @@
         />
         <FormulateInput
           type="select"
+          v-if="showForm(materialData.mechanischeEigenschaften.elastizitaet.einheit)"
           name="elastizitaetEinheit"
           label="Einheit"
           :options="einheiten"
@@ -72,6 +78,17 @@ export default {
         },
       },
     }
+  },
+  methods: {
+    showForm(vModel) {
+      if (this.$store.state.auth.loggedIn) {
+        return true
+      }
+      if (vModel) {
+        return true
+      }
+      return false
+    },
   },
 }
 </script>

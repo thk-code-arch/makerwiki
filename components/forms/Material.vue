@@ -195,6 +195,7 @@
         <FormulateInput type="group" name="radial" :repeatable="false">
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.differentiellesSchwindmass.radial.min)"
             name="min"
             label="min Radial"
             :disabled="!isLoggedin"
@@ -202,6 +203,7 @@
           />
           <FormulateInput
             type="number"
+            v-if="showForm(materialData.differentiellesSchwindmass.radial.max)"
             name="max"
             label="max Radial"
             :disabled="!isLoggedin"
@@ -209,6 +211,7 @@
           />
           <FormulateInput
             type="select"
+            v-if="showForm(materialData.differentiellesSchwindmass.radial.einheit)"
             name="radialEinheit"
             label="Einheit"
             :options="einheiten"
@@ -221,6 +224,7 @@
           <FormulateInput type="group" name="elektrischeLeitfaehigkeit" :repeatable="false">
             <FormulateInput
               type="checkbox"
+              v-if="showForm(materialData.physikalischeEigenschaften.leitfaehigkeit)"
               name="leitfaehigkeit"
               label="leitfähigkeit"
               help="Leitet es oder nicht?"
@@ -229,6 +233,7 @@
             />
             <FormulateInput
               type="checkbox"
+              v-if="showForm(materialData.physikalischeEigenschaften.magnetischeBesonderheiten)"
               name="magnetischeBesonderheiten"
               label="Magnetische Besonderheiten"
               :disabled="!isLoggedin"
@@ -236,6 +241,7 @@
             />
             <FormulateInput
               type="text"
+              v-if="showForm(materialData.physikalischeEigenschaften.optischeEigenschaften)"
               name="optischeEigenschaften"
               label="Optische Eigenschaften"
               :disabled="!isLoggedin"
@@ -243,6 +249,7 @@
             />
             <FormulateInput
               type="text"
+              v-if="showForm(materialData.physikalischeEigenschaften.thermischesVerhalten)"
               name="thermischesVerhalten"
               label="Thermisches Verhalten"
               :disabled="!isLoggedin"
@@ -254,6 +261,7 @@
           <h2 class="subtitle">Oberfläche</h2>
           <FormulateInput
             type="radio"
+            v-if="showForm(materialData.oberflaeche.korrosionOxidation)"
             name="korrosionOxidation"
             label="Korrosion?"
             :repeatable="false"
@@ -263,6 +271,7 @@
           />
           <FormulateInput
             type="radio"
+            v-if="showForm(materialData.oberflaeche.abriebVerschleiss)"
             name="abriebVerschleiss"
             label="Abrieb/Verschleiss"
             :repeatable="false"
@@ -275,6 +284,7 @@
           <h2 class="subtitle">Ökonomie</h2>
           <FormulateInput
             type="text"
+            v-if="showForm(materialData.oekonomie.verfuegbarkeittransport)"
             name="verfuegbarkeittransport"
             label="Verfügbarkeit/Transport"
             :disabled="!isLoggedin"
@@ -282,6 +292,7 @@
           />
           <FormulateInput
             type="radio"
+            v-if="showForm(materialData.oekonomie.wertschoepfung)"
             name="wertschoepfung"
             label="Wertschöpfung"
             :repeatable="false"
@@ -294,6 +305,7 @@
           <h2 class="subtitle">Ökologie</h2>
           <FormulateInput
             type="radio"
+            v-if="showForm(materialData.oekologie.recyclingfaehigkeit)"
             name="recyclingfaehigkeit"
             label="Recyclingfähigkeit"
             :repeatable="false"
@@ -304,6 +316,7 @@
 
           <FormulateInput
             type="text"
+            v-if="showForm(materialData.oekologie.gefahrenpotentiale)"
             name="gefahrenpotentiale"
             label="Gefahrenpotentiale"
             placeholder="edit me"
@@ -312,6 +325,7 @@
           />
           <FormulateInput
             type="text"
+            v-if="showForm(materialData.oekologie.umweltbelastung)"
             name="umweltbelastung"
             label="Umweltbelastung"
             :disabled="!isLoggedin"
