@@ -3,6 +3,11 @@
     <nuxt-link :to="`/material/${processPost.processData.materialId}`" class="article-title">{{
       materialName(processPost.processData.materialId)
     }}</nuxt-link>
+    <li>
+      {{ categoryName(processPost.processData.kategorie.gruppe) }} -
+      {{ categoryName(processPost.processData.kategorie.unterGruppe) }} -
+      {{ categoryName(processPost.processData.kategorie.art) }}
+    </li>
     <h3 class="">created at: {{ processPost.createdAt }}</h3>
     <h3 class="">created by: {{ username(processPost.createdBy) }}</h3>
     <process :existingprocessData="processPost" />
@@ -24,6 +29,9 @@ export default {
     },
     materialName(id) {
       return this.$store.getters['data/getMaterialById'](id)?.materialData.ueberschrift
+    },
+    categoryName(id) {
+      return this.$store.getters['data/getCategoryById'](id)?.name
     },
   },
 }
