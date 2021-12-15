@@ -1,7 +1,9 @@
 <template>
   <div class="main text-center flex flex-col flow-root">
-    <h1 class="title">Formular</h1>
-    <h2 class="subtitle">Process Formular</h2>
+    <div v-if="isLoggedin">
+      <h1 class="title">Formular</h1>
+      <h2 class="subtitle">Process Formular</h2>
+    </div>
 
     <FormulateForm>
       <FormulateInput
